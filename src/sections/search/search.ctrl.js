@@ -1,28 +1,41 @@
 'use strict';
-angular
-    .module('app.core')
-    .controller('SearchController', function($location, $routeParams, ShowService, PageValues) {
-        //Set page title and description
-        PageValues.title = "SEARCH";
-        PageValues.description = "Search for your favorite TV shows.";
-        //Setup view model object
-        var vm = this;
-        vm.query = null;
-        vm.shows = [];
-        vm.loading = null;
-        vm.setSearch = function() {
-            var query = encodeURI(vm.query);
-            $location.path('/search/' + query);
-        };
-        vm.performSearch = function(query) {
-            vm.loading = true;
-            ShowService.search(query).then(function(response){
-                vm.shows = response;
-                vm.loading = false;
-            });
-        };
-        if (typeof $routeParams.query != "undefined") {
-            vm.performSearch($routeParams.query);
-            vm.query = decodeURI($routeParams.query);
-        }
-    });
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ShowService } from '../services/show.service';
+import { PageValues } from '../models/page-values.model';
+@Component({
+    selector: 'app-search',
+    templateUrl: './search.component.html',
+    styleUrls: ['./search.component.css']
+})
+export class SearchController {
+    query: string | null = null;
+    shows: any[] = [];
+    loading: boolean | null = null;
+    constructor(
+        private router: Router,
+        private route: ActivatedRoute,
+        private showService: ShowService,
+        private pageValues: PageValues
+    ) {
+        this.pageValues.title = "SEARCH";
+        this.pageValues.description = "Search for your favorite TV shows.";
+        this.route.params.subscribe(params => {
+            if (params['query']) {
+                this.performSearch(params['query']);
+                this.query = decodeURIComponent(params['query']);
+            }
+        });
+    }
+    setSearch(): void {
+        const encodedQuery = encodeURIComponent(this.query || '');
+        this.router.navigate(['/search', encodedQuery]);
+    }
+    performSearch(query: string): void {
+        this.loading = true;
+        this.showService.search(query).then(response => {
+            this.shows = response;
+            this.loading = false;
+        });
+    }
+}
