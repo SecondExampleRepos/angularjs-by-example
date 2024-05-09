@@ -4,7 +4,9 @@
   "description": "An example application to demonstrate a wide range of AngularJS best practices",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "tsc && node ./dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -36,6 +38,9 @@
     "gulp-inject": "~1.0.2",
     "gulp-clean": "~0.3.1",
     "gulp-replace": "~0.4.0",
-    "gulp-angular-extender": "~0.1.0"
+    "gulp-angular-extender": "~0.1.0",
+    "typescript": "^4.0.5",
+    "@types/node": "^14.14.10",
+    "ts-node": "^9.0.0"
   }
 }
