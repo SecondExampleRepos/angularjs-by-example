@@ -1,8 +1,8 @@
 angular
     .module('app.core')
     .directive('show', show);
-function show(ShowService) {
-    var directive = {
+function show(ShowService: ShowService) {
+    var directive: angular.IDirective = {
         controller: controller,
         templateUrl: 'components/show/show.tpl.html',
         restrict: 'E',
@@ -11,9 +11,9 @@ function show(ShowService) {
         }
     };
     return directive;
-    function controller($scope) {
+    function controller($scope: any) {
         $scope.genres = [];
-        ShowService.get($scope.show.id).then(function(response){
+        ShowService.get($scope.show.id).then(function(response: { genres: string[] }){
             $scope.genres = response.genres;
         });
     }
