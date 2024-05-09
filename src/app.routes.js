@@ -1,12 +1,26 @@
 'use strict';
 
+import angular from 'angular';
+import { IRouteProvider } from 'angular-route';
+
 angular
     .module('app.routes', ['ngRoute'])
     .config(config);
 
-function config ($routeProvider) {
-    $routeProvider.
-        when('/', {
+type ShowServiceType = {
+    getPremieres: () => Promise<any>;
+    getPopular: () => Promise<any>;
+    get: (id: string) => Promise<any>;
+};
+
+interface RouteResolve {
+    shows?: () => Promise<any>;
+    show?: (ShowService: ShowServiceType, $route: any) => Promise<any>;
+}
+
+function config($routeProvider: IRouteProvider) {
+    $routeProvider
+        .when('/', {
             templateUrl: 'sections/home/home.tpl.html',
             controller: 'HomeController as home'
         })
@@ -14,10 +28,10 @@ function config ($routeProvider) {
             templateUrl: 'sections/premieres/premieres.tpl.html',
             controller: 'PremieresController as premieres',
             resolve: {
-                shows: function(ShowService) {
+                shows: (ShowService: ShowServiceType): Promise<any> => {
                     return ShowService.getPremieres();
                 }
-            }
+            } as RouteResolve
         })
         .when('/search', {
             templateUrl: 'sections/search/search.tpl.html',
@@ -31,19 +45,19 @@ function config ($routeProvider) {
             templateUrl: 'sections/popular/popular.tpl.html',
             controller: 'PopularController as popular',
             resolve: {
-                shows: function(ShowService) {
+                shows: (ShowService: ShowServiceType): Promise<any> => {
                     return ShowService.getPopular();
                 }
-            }
+            } as RouteResolve
         })
         .when('/view/:id', {
             templateUrl: 'sections/view/view.tpl.html',
             controller: 'ViewController as view',
             resolve: {
-                show: function(ShowService, $route) {
+                show: (ShowService: ShowServiceType, $route: any): Promise<any> => {
                     return ShowService.get($route.current.params.id);
                 }
-            }
+            } as RouteResolve
         })
         .otherwise({
             redirectTo: '/'
