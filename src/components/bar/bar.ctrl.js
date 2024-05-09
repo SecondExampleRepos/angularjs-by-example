@@ -1,8 +1,11 @@
 'use strict';
+import angular from 'angular';
+import { IPageValues, IBarControllerScope } from './types';
 angular
     .module('app.core')
-    .controller('BarController', function($scope, PageValues) {
+    .controller('BarController', ['$scope', 'PageValues', 
+        function($scope: IBarControllerScope, PageValues: IPageValues) {
         //Setup the view model object
-        var vm = this;
+        const vm = this;
         vm.data = PageValues;
-    });
+    }]);
