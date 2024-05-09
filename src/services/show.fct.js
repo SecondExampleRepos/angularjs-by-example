@@ -1,67 +1,68 @@
 'use strict';
 
-/*
- * Contains a service to communicate with the TRACK TV API
- */
-angular
-    .module('app.services')
-    .constant('API_KEY', '87de9079e74c828116acce677f6f255b')
-    .constant('BASE_URL', 'http://api.themoviedb.org/3')
-    .factory('ShowService', dataService);
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import * as moment from 'moment';
+import { Observable } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
-function dataService($http, API_KEY, BASE_URL, $log, moment) {
-    var data = {
-        'getPremieres': getPremieres,
-        'get': get,
-        'search': search,
-        'getPopular': getPopular,
-        'getCast': getCast
-    };
-    function makeRequest(url, params) {
-        var requestUrl = BASE_URL + '/' + url + '?api_key=' + API_KEY;
-        angular.forEach(params, function(value, key){
-            requestUrl = requestUrl + '&' + key + '=' + value;
-        });
-        return $http({
-            'url': requestUrl,
-            'method': 'GET',
-            'headers': {
-                'Content-Type': 'application/json'
-            },
-            'cache': true
-        }).then(function(response){
-            return response.data;
-        }).catch(dataServiceError);
-    }
-    function getPremieres() {
-        //Get first day of the current month
-        var date = new Date();
-        date.setDate(1);
-        return makeRequest('discover/tv', {'first_air_date.gte': moment(date).format('DD-MM-YYYY'), append_to_response: 'genres'}).then(function(data){
-            return data.results;
-        });
-    }
-    function get(id) {
-        return makeRequest('tv/' + id, {});
-    }
-    function getCast(id) {
-        return makeRequest('tv/' + id + '/credits', {});
-    }
-    function search(query) {
-        return makeRequest('search/tv', {query: query}).then(function(data){
-            return data.results;
-        });
-    }
-    function getPopular() {
-        return makeRequest('tv/popular', {}).then(function(data){
-            return data.results;
-        });
-    }
-    return data;
+@Injectable({
+  providedIn: 'root'
+})
+export class ShowService {
+  private readonly API_KEY = '87de9079e74c828116acce677f6f255b';
+  private readonly BASE_URL = 'http://api.themoviedb.org/3';
 
-    function dataServiceError(errorResponse) {
-        $log.error('XHR Failed for ShowService');
-        $log.error(errorResponse);
-        return errorResponse;
-    }
+  constructor(private http: HttpClient) {}
+
+  private makeRequest(url: string, params: any): Observable<any> {
+    let requestUrl = `${this.BASE_URL}/${url}?api_key=${this.API_KEY}`;
+    Object.keys(params).forEach(key => {
+      requestUrl += `&${key}=${params[key]}`;
+    });
+    return this.http.get(requestUrl, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      observe: 'response'
+    }).pipe(
+      map(response => response.body),
+      catchError(this.dataServiceError)
+    );
+  }
+
+  getPremieres(): Observable<any> {
+    const date = new Date();
+    date.setDate(1);
+    return this.makeRequest('discover/tv', {'first_air_date.gte': moment(date).format('DD-MM-YYYY'), append_to_response: 'genres'}).pipe(
+      map(data => data.results)
+    );
+  }
+
+  get(id: number): Observable<any> {
+    return this.makeRequest(`tv/${id}`, {});
+  }
+
+  getCast(id: number): Observable<any> {
+    return this.makeRequest(`tv/${id}/credits`, {});
+  }
+
+  search(query: string): Observable<any> {
+    return this.makeRequest('search/tv', {query: query}).pipe(
+      map(data => data.results)
+    );
+  }
+
+  getPopular(): Observable<any> {
+    return this.makeRequest('tv/popular', {}).pipe(
+      map(data => data.results)
+    );
+  }
+
+  private dataServiceError(error: any): Observable<any> {
+    console.error('XHR Failed for ShowService');
+    console.error(error);
+    return Observable.throw(error);
+  }
 }
+```
