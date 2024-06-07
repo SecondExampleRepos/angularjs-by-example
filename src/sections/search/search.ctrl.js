@@ -1,28 +1,56 @@
 'use strict';
+import { ILocationService, IRouteParamsService } from 'angular';
+import { ShowService, PageValues } from './services';
+enum PageTitles {
+    SEARCH = "SEARCH"
+}
+enum PageDescriptions {
+    SEARCH = "Search for your favorite TV shows."
+}
+interface IShowService {
+    search(query: string): Promise<any>;
+}
+interface IPageValues {
+    title: string;
+    description: string;
+}
+interface ISearchController {
+    query: string | null;
+    shows: any[];
+    loading: boolean | null;
+    setSearch(): void;
+    performSearch(query: string): void;
+}
+class SearchController implements ISearchController {
+    query: string | null = null;
+    shows: any[] = [];
+    loading: boolean | null = null;
+    static $inject = ['$location', '$routeParams', 'ShowService', 'PageValues'];
+    constructor(
+        private $location: ILocationService,
+        private $routeParams: IRouteParamsService,
+        private showService: IShowService,
+        private pageValues: IPageValues
+    ) {
+        this.pageValues.title = PageTitles.SEARCH;
+        this.pageValues.description = PageDescriptions.SEARCH;
+        if (typeof this.$routeParams.query !== "undefined") {
+            this.performSearch(this.$routeParams.query);
+            this.query = decodeURI(this.$routeParams.query);
+        }
+    }
+    setSearch(): void {
+        const query = encodeURI(this.query as string);
+        this.$location.path('/search/' + query);
+    }
+    performSearch(query: string): void {
+        this.loading = true;
+        this.showService.search(query).then((response: any) => {
+            this.shows = response;
+            this.loading = false;
+        });
+    }
+}
 angular
     .module('app.core')
-    .controller('SearchController', function($location, $routeParams, ShowService, PageValues) {
-        //Set page title and description
-        PageValues.title = "SEARCH";
-        PageValues.description = "Search for your favorite TV shows.";
-        //Setup view model object
-        var vm = this;
-        vm.query = null;
-        vm.shows = [];
-        vm.loading = null;
-        vm.setSearch = function() {
-            var query = encodeURI(vm.query);
-            $location.path('/search/' + query);
-        };
-        vm.performSearch = function(query) {
-            vm.loading = true;
-            ShowService.search(query).then(function(response){
-                vm.shows = response;
-                vm.loading = false;
-            });
-        };
-        if (typeof $routeParams.query != "undefined") {
-            vm.performSearch($routeParams.query);
-            vm.query = decodeURI($routeParams.query);
-        }
-    });
+    .controller('SearchController', SearchController);
