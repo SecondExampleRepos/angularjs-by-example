@@ -9,59 +9,74 @@ angular
     .constant('BASE_URL', 'http://api.themoviedb.org/3')
     .factory('ShowService', dataService);
 
-function dataService($http, API_KEY, BASE_URL, $log, moment) {
-    var data = {
-        'getPremieres': getPremieres,
-        'get': get,
-        'search': search,
-        'getPopular': getPopular,
-        'getCast': getCast
+interface IShowService {
+    getPremieres(): Promise<any>;
+    get(id: number): Promise<any>;
+    search(query: string): Promise<any>;
+    getPopular(): Promise<any>;
+    getCast(id: number): Promise<any>;
+}
+
+function dataService($http: ng.IHttpService, API_KEY: string, BASE_URL: string, $log: ng.ILogService, moment: any): IShowService {
+    const data: IShowService = {
+        getPremieres: getPremieres,
+        get: get,
+        search: search,
+        getPopular: getPopular,
+        getCast: getCast
     };
-    function makeRequest(url, params) {
-        var requestUrl = BASE_URL + '/' + url + '?api_key=' + API_KEY;
-        angular.forEach(params, function(value, key){
-            requestUrl = requestUrl + '&' + key + '=' + value;
+
+    function makeRequest(url: string, params: { [key: string]: any }): Promise<any> {
+        let requestUrl = `${BASE_URL}/${url}?api_key=${API_KEY}`;
+        angular.forEach(params, (value, key) => {
+            requestUrl = `${requestUrl}&${key}=${value}`;
         });
         return $http({
-            'url': requestUrl,
-            'method': 'GET',
-            'headers': {
+            url: requestUrl,
+            method: 'GET',
+            headers: {
                 'Content-Type': 'application/json'
             },
-            'cache': true
-        }).then(function(response){
+            cache: true
+        }).then((response: ng.IHttpResponse<any>) => {
             return response.data;
         }).catch(dataServiceError);
     }
-    function getPremieres() {
-        //Get first day of the current month
-        var date = new Date();
-        date.setDate(1);
-        return makeRequest('discover/tv', {'first_air_date.gte': moment(date).format('DD-MM-YYYY'), append_to_response: 'genres'}).then(function(data){
-            return data.results;
-        });
-    }
-    function get(id) {
-        return makeRequest('tv/' + id, {});
-    }
-    function getCast(id) {
-        return makeRequest('tv/' + id + '/credits', {});
-    }
-    function search(query) {
-        return makeRequest('search/tv', {query: query}).then(function(data){
-            return data.results;
-        });
-    }
-    function getPopular() {
-        return makeRequest('tv/popular', {}).then(function(data){
-            return data.results;
-        });
-    }
-    return data;
 
-    function dataServiceError(errorResponse) {
+    function getPremieres(): Promise<any> {
+        // Get first day of the current month
+        const date = new Date();
+        date.setDate(1);
+        return makeRequest('discover/tv', { 'first_air_date.gte': moment(date).format('DD-MM-YYYY'), append_to_response: 'genres' }).then((data: any) => {
+            return data.results;
+        });
+    }
+
+    function get(id: number): Promise<any> {
+        return makeRequest(`tv/${id}`, {});
+    }
+
+    function getCast(id: number): Promise<any> {
+        return makeRequest(`tv/${id}/credits`, {});
+    }
+
+    function search(query: string): Promise<any> {
+        return makeRequest('search/tv', { query: query }).then((data: any) => {
+            return data.results;
+        });
+    }
+
+    function getPopular(): Promise<any> {
+        return makeRequest('tv/popular', {}).then((data: any) => {
+            return data.results;
+        });
+    }
+
+    function dataServiceError(errorResponse: any): any {
         $log.error('XHR Failed for ShowService');
         $log.error(errorResponse);
         return errorResponse;
     }
+
+    return data;
 }
