@@ -1,3 +1,4 @@
 'use strict';
-angular.module('app.core', []);
+import angular from 'angular';
 
+angular.module('app.core', []);
