@@ -1,16 +1,17 @@
-angular
-    .module('app.core')
-    .directive('ngEnter', ngEnter);
+import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 
-function ngEnter() {
-    return function(scope, element, attrs) {
-        element.bind("keydown keypress", function(event) {
-            if(event.which === 13) {
-                scope.$apply(function(){
-                    scope.$eval(attrs.ngEnter);
-                });
-                event.preventDefault();
-            }
-        });
-    };
+@Directive({
+  selector: '[ngEnter]'
+})
+export class NgEnterDirective {
+  @Input() ngEnter: () => void;
+
+  constructor(private el: ElementRef) {}
+
+  @HostListener('keydown', ['$event']) onKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      this.ngEnter();
+      event.preventDefault();
+    }
+  }
 }
