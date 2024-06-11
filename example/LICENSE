@@ -1,0 +1,30 @@
+// Import necessary modules
+import express, { Request, Response } from 'express';
+
+// Create an instance of express
+const app = express();
+
+// Define a port
+const port = 3000;
+
+// Middleware to parse JSON bodies
+app.use(express.json());
+
+// Define a simple route
+app.get('/', (req: Request, res: Response) => {
+  res.send('Hello, world!');
+});
+
+// Define another route to demonstrate JSON response
+app.get('/api/data', (req: Request, res: Response) => {
+  const data = {
+    message: 'This is some data',
+    timestamp: new Date().toISOString()
+  };
+  res.json(data);
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
