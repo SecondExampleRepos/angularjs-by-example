@@ -1,0 +1,25 @@
+import React, { useState, useEffect } from 'react';
+
+interface NgAnimateChildrenProps {
+  animateChildren: boolean | string;
+}
+
+const NgAnimateChildren: React.FC<NgAnimateChildrenProps> = ({ animateChildren, children }) => {
+  const [shouldAnimateChildren, setShouldAnimateChildren] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (typeof animateChildren === 'string' && animateChildren.length === 0) {
+      setShouldAnimateChildren(true);
+    } else {
+      setShouldAnimateChildren(!!animateChildren);
+    }
+  }, [animateChildren]);
+
+  return (
+    <div data-animate-children={shouldAnimateChildren}>
+      {children}
+    </div>
+  );
+};
+
+export default NgAnimateChildren;
