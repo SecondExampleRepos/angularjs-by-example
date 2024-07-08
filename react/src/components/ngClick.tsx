@@ -1,0 +1,97 @@
+import React, { useState, useEffect, useRef } from 'react';
+
+interface NgClickProps {
+  onClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  disabled?: boolean;
+}
+
+const NgClick: React.FC<NgClickProps> = ({ onClick, disabled, children }) => {
+  const [active, setActive] = useState(false);
+  const [touchStart, setTouchStart] = useState<{ x: number; y: number } | null>(null);
+  const [lastTouchTime, setLastTouchTime] = useState<number>(0);
+  const touchTimeout = useRef<number | null>(null);
+  const touchCoordinates = useRef<number[]>([]);
+  const rootElement = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClick = (event: MouseEvent) => {
+      if (Date.now() - lastTouchTime < 2500) {
+        const { clientX, clientY } = event;
+        if (touchCoordinates.current.some((coord, index) => index % 2 === 0 && Math.abs(coord - clientX) < 25 && Math.abs(touchCoordinates.current[index + 1] - clientY) < 25)) {
+          event.stopPropagation();
+          event.preventDefault();
+          (event.target as HTMLElement).blur();
+        }
+      }
+    };
+
+    const handleTouchStart = (event: TouchEvent) => {
+      const { clientX, clientY } = event.touches[0];
+      touchCoordinates.current.push(clientX, clientY);
+      setTimeout(() => {
+        touchCoordinates.current = touchCoordinates.current.filter((_, index) => index % 2 !== 0 || Math.abs(touchCoordinates.current[index] - clientX) >= 25 || Math.abs(touchCoordinates.current[index + 1] - clientY) >= 25);
+      }, 2500);
+    };
+
+    if (rootElement.current) {
+      rootElement.current.addEventListener('click', handleClick, true);
+      rootElement.current.addEventListener('touchstart', handleTouchStart, true);
+    }
+
+    return () => {
+      if (rootElement.current) {
+        rootElement.current.removeEventListener('click', handleClick, true);
+        rootElement.current.removeEventListener('touchstart', handleTouchStart, true);
+      }
+    };
+  }, [lastTouchTime]);
+
+  const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+    setActive(true);
+    const { clientX, clientY } = event.touches[0];
+    setTouchStart({ x: clientX, y: clientY });
+  };
+
+  const handleTouchMove = () => {
+    setActive(false);
+  };
+
+  const handleTouchEnd = (event: React.TouchEvent<HTMLDivElement>) => {
+    if (touchStart) {
+      const { clientX, clientY } = event.changedTouches[0];
+      const distance = Math.sqrt(Math.pow(clientX - touchStart.x, 2) + Math.pow(clientY - touchStart.y, 2));
+      if (distance < 12 && Date.now() - lastTouchTime < 750) {
+        setLastTouchTime(Date.now());
+        onClick(event as any);
+      }
+    }
+    setActive(false);
+  };
+
+  const handleMouseDown = () => {
+    setActive(true);
+  };
+
+  const handleMouseUp = () => {
+    setActive(false);
+  };
+
+  return (
+    <div
+      ref={rootElement}
+      className={`ng-click ${active ? 'ng-click-active' : ''}`}
+      onClick={onClick}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      onTouchCancel={handleTouchMove}
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseUp}
+      onMouseUp={handleMouseUp}
+    >
+      {children}
+    </div>
+  );
+};
+
+export default NgClick;
