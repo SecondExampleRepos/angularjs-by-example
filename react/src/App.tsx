@@ -7,6 +7,8 @@ import Premieres from './components/Premieres';
 import Popular from './components/Popular';
 import Search from './components/Search';
 import NotFound from './components/NotFound';
+import View from './components/View';
+import ShowService from './services/ShowService';
 
 // Placeholder for the Bar component
 const Bar = ({ data }) => (
@@ -60,6 +62,12 @@ function App() {
               <Route path="/search">
                 <Search />
               </Route>
+              <Route path="/search/:query">
+                <Search />
+              </Route>
+              <Route path="/view/:id" render={(props) => (
+                <View {...props} show={ShowService.get(props.match.params.id)} />
+              )} />
               <Route path="*">
                 <NotFound />
               </Route>
@@ -72,6 +80,3 @@ function App() {
 }
 
 export default App;
-
-// SECOND AGENT: [MISSING CONTEXT] - The AngularJS module definition and dependencies are not directly translatable to React. 
-// The equivalent functionality should be implemented in the respective React components and services.
