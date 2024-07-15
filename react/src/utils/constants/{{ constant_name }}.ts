@@ -1,7 +1,3 @@
-// react/src/utils/constants/PageValues.ts
+// react/src/utils/constants/APIKey.ts
 
-export const PageValues = {
-    title: null as string | null,
-    description: null as string | null,
-    loading: false
-};
+export const API_KEY = '87de9079e74c828116acce677f6f255b';
