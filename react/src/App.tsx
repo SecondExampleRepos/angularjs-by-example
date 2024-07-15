@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Home from './components/Home';
+import Premieres from './components/Premieres';
+import Popular from './components/Popular';
+import Search from './components/Search';
+import NotFound from './components/NotFound';
 
 // Placeholder for the Bar component
 const Bar = ({ data }) => (
@@ -40,7 +46,6 @@ function App() {
       <Bar data={barData} />
       <section id="main">
         <div className="container">
-
           <Router>
             <Switch>
               <Route exact path="/">
