@@ -1,3 +1,11 @@
-// react/src/utils/constants/APIKey.ts
+// react/src/utils/constants/PageValues.ts
 
-export const API_KEY = '87de9079e74c828116acce677f6f255b';
+export const PageValues = {
+    title: null as string | null,
+    description: null as string | null,
+    loading: false
+};
+
+// react/src/utils/constants/BaseUrl.ts
+
+export const BASE_URL = 'http://api.themoviedb.org/3';
