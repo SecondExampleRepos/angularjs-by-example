@@ -1,25 +1,40 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Home from './components/Home';
+import Premieres from './components/Premieres';
+import Search from './components/Search';
+import Popular from './components/Popular';
+import View from './components/View';
+import ShowService from './services/ShowService';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route
+          path="/premieres"
+          render={(props) => (
+            <Premieres {...props} shows={ShowService.getPremieres()} />
+          )}
+        />
+        <Route path="/search" component={Search} />
+        <Route path="/search/:query" component={Search} />
+        <Route
+          path="/popular"
+          render={(props) => (
+            <Popular {...props} shows={ShowService.getPopular()} />
+          )}
+        />
+        <Route
+          path="/view/:id"
+          render={(props) => (
+            <View {...props} show={ShowService.get(props.match.params.id)} />
+          )}
+        />
+        <Route path="*" component={Home} />
+      </Switch>
+    </Router>
   );
 }
 
