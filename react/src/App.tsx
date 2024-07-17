@@ -1,17 +1,50 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import HomeController from './components/HomeController';
+import PremieresController from './components/PremieresController';
+import SearchController from './components/SearchController';
+import PopularController from './components/PopularController';
+import ViewController from './components/ViewController';
+import ShowService from './services/ShowService';
 
-function AppCore() {
-  // SECOND AGENT: [MISSING CONTEXT] - The AngularJS module 'app.core' was defined here. 
-  // In React, this would typically be replaced with relevant React components or hooks.
+const AppRoutes: React.FC = () => {
   return (
-    <div className="AppCore">
-
-      {/* Since the original AngularJS module 'app.core' does not contain any specific logic or components, 
-          we will assume that this React component is a placeholder for future core functionalities of the app. */}
-      <h1>Welcome to the Core Module</h1>
-      <p>This is the core module of the application, converted from AngularJS to React.</p>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={HomeController} />
+        <Route
+          path="/premieres"
+          render={(props) => (
+            <PremieresController
+              {...props}
+              shows={ShowService.getPremieres()}
+              pageValues={{ title: '', description: '' }}
+            />
+          )}
+        />
+        <Route exact path="/search" component={SearchController} />
+        <Route path="/search/:query" component={SearchController} />
+        <Route
+          path="/popular"
+          render={(props) => (
+            <PopularController
+              {...props}
+              shows={ShowService.getPopular()}
+              pageValues={{ title: '', description: '' }}
+            />
+          )}
+        />
+        <Route
+          path="/view/:id"
+          render={(props) => {
+            const show = ShowService.get(props.match.params.id);
+            return <ViewController {...props} show={show} />;
+          }}
+        />
+        <Redirect to="/" />
+      </Switch>
+    </Router>
   );
-}
+};
 
-export default AppCore;
+export default AppRoutes;
