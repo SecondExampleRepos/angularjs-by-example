@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
+import HomeController from './components/HomeController';
+import PremieresController from './components/PremieresController';
+import PopularController from './components/PopularController';
+import SearchController from './components/SearchController';
+import ViewController from './components/ViewController';
+import NotFound from './components/NotFound';
 
 function App() {
   const [barData, setBarData] = useState({ title: '', description: '', loading: true });
@@ -41,23 +48,22 @@ function App() {
 
       <section id="main">
         <div className="container">
-
           <Router>
             <Switch>
               <Route exact path="/">
-                <Home />
+                <HomeController />
               </Route>
               <Route path="/premieres">
-                <Premieres />
+                <PremieresController shows={[]} />
               </Route>
               <Route path="/popular">
-                <Popular />
+                <PopularController shows={[]} />
               </Route>
-              <Route path="/search">
-                <Search />
+              <Route path="/search/:query?">
+                <SearchController />
               </Route>
               <Route path="/view/:id">
-                <View />
+                <ViewController show={{ id: 0, original_name: '', cast: [] }} />
               </Route>
               <Route path="*">
                 <NotFound />
