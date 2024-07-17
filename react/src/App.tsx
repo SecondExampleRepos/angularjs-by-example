@@ -1,14 +1,71 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import axios from 'axios';
 
 function App() {
+  const [barData, setBarData] = useState({ title: '', description: '', loading: true });
+
+  useEffect(() => {
+    // Fetch bar data
+    axios.get('/api/bar')
+      .then(response => {
+        setBarData({ ...response.data, loading: false });
+      })
+      .catch(error => {
+        console.error('Error fetching bar data:', error);
+        setBarData({ ...barData, loading: false });
+      });
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Welcome to the React App converted from AngularJS.
-        </p>
+      <header id="site-header">
+        <div className="container">
+          <div className="pull-left logo">REACT <span className="alt">BY</span> EXAMPLE</div>
+          <ul className="pull-right menu">
+            <li><a href="#/">HOME</a></li>
+            <li><a href="#/premieres">PREMIERES</a></li>
+            <li><a href="#/popular">POPULAR</a></li>
+            <li><a href="#/search">SEARCH</a></li>
+          </ul>
+        </div>
       </header>
+
+      <section id="site-bar">
+        <div className="container">
+          <h1>{barData.title}</h1>
+          <p>{barData.description}</p>
+        </div>
+        {barData.loading && <div className="page-loader"><div className="throbber"></div></div>}
+      </section>
+
+      <section id="main">
+        <div className="container">
+
+          <Router>
+            <Switch>
+              <Route exact path="/">
+                <Home />
+              </Route>
+              <Route path="/premieres">
+                <Premieres />
+              </Route>
+              <Route path="/popular">
+                <Popular />
+              </Route>
+              <Route path="/search">
+                <Search />
+              </Route>
+              <Route path="/view/:id">
+                <View />
+              </Route>
+              <Route path="*">
+                <NotFound />
+              </Route>
+            </Switch>
+          </Router>
+        </div>
+      </section>
     </div>
   );
 }
