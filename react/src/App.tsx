@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
+import Home from './components/Home';
+import Premieres from './components/Premieres';
+import Popular from './components/Popular';
+import Search from './components/Search';
+import View from './components/View';
+import NotFound from './components/NotFound';
 
 function App() {
   const [barData, setBarData] = useState({ title: '', description: '', loading: true });
@@ -41,7 +48,6 @@ function App() {
 
       <section id="main">
         <div className="container">
-
           <Router>
             <Switch>
               <Route exact path="/">
