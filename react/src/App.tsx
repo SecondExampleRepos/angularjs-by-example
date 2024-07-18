@@ -8,6 +8,13 @@ import { AnimatePresence } from 'framer-motion'; // React equivalent for ngAnima
 import moment from 'moment'; // React equivalent for angularMoment
 // Note: angular-preload-image and truncate would need React equivalents or custom implementations
 
+// Importing components
+import HomeController from './components/HomeController';
+import PremieresController from './components/PremieresController';
+import SearchController from './components/SearchController';
+import PopularController from './components/PopularController';
+import ViewController from './components/ViewController';
+
 function App() {
   return (
     <div className="App">
@@ -28,10 +35,12 @@ function App() {
       <Router>
         <AnimatePresence>
           <Switch>
-            {/* Define routes here */}
-            <Route path="/" exact>
-              {/* Home component or equivalent */}
-            </Route>
+            <Route path="/" exact component={HomeController} />
+            <Route path="/premieres" exact component={PremieresController} />
+            <Route path="/search" exact component={SearchController} />
+            <Route path="/search/:searchQuery" exact component={SearchController} />
+            <Route path="/popular" exact component={PopularController} />
+            <Route path="/view/:id" exact component={ViewController} />
             {/* Add more routes as needed */}
           </Switch>
         </AnimatePresence>
