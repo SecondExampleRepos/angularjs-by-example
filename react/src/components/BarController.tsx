@@ -1,21 +1,38 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-// Assuming PageValues is a constant or service that needs to be imported
-// SECOND AGENT: [MISSING CONTEXT] - Import PageValues from the appropriate module
+// Import PageValues from the appropriate module
+import { PageValues } from '../services/pageValues';
 
 const BarController: React.FC = () => {
     const [data, setData] = useState<any>(null);
+    const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        // Assuming PageValues is a synchronous value or a promise
-        // SECOND AGENT: [MISSING CONTEXT] - Fetch or set PageValues appropriately
-        setData(PageValues);
+        // Fetch or set PageValues appropriately
+        axios.get(PageValues)
+            .then(response => {
+                setData(response.data);
+                setLoading(false);
+            })
+            .catch(error => {
+                console.error("Error fetching data:", error);
+                setLoading(false);
+            });
     }, []);
 
     return (
         <div>
-            {/* Render the data or any other UI elements here */}
-            {data && <div>{JSON.stringify(data)}</div>}
+            {loading ? (
+                <div className="page-loader"><div className="throbber"></div></div>
+            ) : (
+                data && (
+                    <div>
+                        <h1>{data.title}</h1>
+                        <p>{data.description}</p>
+                    </div>
+                )
+            )}
         </div>
     );
 };
