@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PageValues from '../utils/constants/PageValues';
+import axios from 'axios';
 
 const BarController: React.FC = () => {
     const [data, setData] = useState(PageValues);
@@ -11,8 +12,8 @@ const BarController: React.FC = () => {
         const fetchData = async () => {
             try {
                 // Simulate an API call
-                const response = await fetch('https://api.example.com/data');
-                const result = await response.json();
+                const response = await axios.get('https://api.example.com/data');
+                const result = response.data;
                 setData({
                     title: result.title,
                     description: result.description,
