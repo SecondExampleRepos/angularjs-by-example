@@ -1,26 +1,64 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+﻿import axios from 'axios';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+export const getPremieres = async () => {
 
-export default App;
+  try {
+    const response = await axios.get('/api/premieres');
+    return response.data;
+  } catch (error) {
+
+  try {
+    const response = await axios.get('/api/popular');
+    return response.data;
+  } catch (error) {
+
+  try {
+    const response = await axios.get(`/api/shows/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching show with ID ${id}:`, error);
+    return null;
+  }
+};
+    return [];
+  }
+};
+    return [];
+  }
+};
+  return [];
+};
+
+export const getPopular = async () => {
+
+  try {
+    const response = await axios.get('/api/popular');
+    return response.data;
+  } catch (error) {
+
+  try {
+    const response = await axios.get(`/api/shows/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching show with ID ${id}:`, error);
+    return null;
+  }
+};
+    return [];
+  }
+};
+  return [];
+};
+
+export const getShow = async (id: string) => {
+
+  try {
+    const response = await axios.get(`/api/shows/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching show with ID ${id}:`, error);
+    return null;
+  }
+};
+  return null;
+};
