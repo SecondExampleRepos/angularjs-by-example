@@ -27,3 +27,28 @@ function App() {
 }
 
 export default App;
+
+// React Router configuration to replace AngularJS routes
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Home from './components/Home';
+import Premieres from './components/Premieres';
+import Search from './components/Search';
+import Popular from './components/Popular';
+import View from './components/View';
+
+function AppRoutes() {
+  return (
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/premieres" component={Premieres} />
+        <Route path="/search/:query?" component={Search} />
+        <Route path="/popular" component={Popular} />
+        <Route path="/view/:id" component={View} />
+        <Route path="*" component={Home} />
+      </Switch>
+    </Router>
+  );
+}
+
+export default AppRoutes;
