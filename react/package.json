@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "react-datetime-picker": "^6.0.1"
+    "react-bootstrap-multiselect": "^2.4.1"
   }
 }
