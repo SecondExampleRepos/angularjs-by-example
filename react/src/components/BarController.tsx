@@ -5,8 +5,6 @@ const BarController: React.FC = () => {
     const [data, setData] = useState(PageValues);
 
     useEffect(() => {
-        // Any side effects or data fetching logic can be added here
-
         // Fetch data or perform any side effects here
         const fetchData = async () => {
             try {
