@@ -1,10 +1,12 @@
-{
+﻿{
   "name": "angularjs-by-example",
   "version": "1.0.0",
   "description": "An example application to demonstrate a wide range of AngularJS best practices",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "tsc && node dist/index.js"
   },
   "repository": {
     "type": "git",
