@@ -1,9 +1,11 @@
-'use strict';
+﻿'use strict';
+
+import type { PageValuesType } from './page.val-js.types';
 
 angular
     .module('app.core')
-    .value('PageValues', {
-        'title': null,
-        'description': null,
-        'loading': false
+    .value<PageValuesType>('PageValues', {
+        title: null,
+        description: null,
+        loading: false
     });
