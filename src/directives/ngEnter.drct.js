@@ -1,16 +1,21 @@
-angular
-    .module('app.core')
-    .directive('ngEnter', ngEnter);
+﻿import type { NgEnterAttributes } from './ngEnter.drct-js.types';
 
-function ngEnter() {
-    return function(scope, element, attrs) {
-        element.bind("keydown keypress", function(event) {
-            if(event.which === 13) {
-                scope.$apply(function(){
-                    scope.$eval(attrs.ngEnter);
-                });
-                event.preventDefault();
-            }
-        });
-    };
+angular
+  .module('app.core')
+  .directive('ngEnter', ngEnter);
+
+function ngEnter(): angular.IDirective {
+  return {
+    restrict: 'A',
+    link: function(scope: angular.IScope, element: JQLite, attrs: NgEnterAttributes) {
+      element.bind("keydown keypress", function(event: KeyboardEvent) {
+        if (event.which === 13) {
+          scope.$apply(() => {
+            scope.$eval(attrs.ngEnter);
+          });
+          event.preventDefault();
+        }
+      });
+    }
+  };
 }
