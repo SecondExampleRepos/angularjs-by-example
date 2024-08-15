@@ -1,12 +1,16 @@
-'use strict';
+﻿'use strict';
+
+import type { IHttpProvider, IHttpPromiseCallbackArg, ILocationService, ILogService, IQService, IRootScopeService } from 'angular';
+import type { PageValuesType } from './app.config-js.types';
+
 angular
     .module('app.config', [])
     .config(configs)
     .run(runs);
 
-function configs($httpProvider) {
-    var interceptor = function($location, $log, $q) {
-        function error(response) {
+function configs($httpProvider: IHttpProvider): void {
+    const interceptor = ($location: ILocationService, $log: ILogService, $q: IQService) => {
+        function error(response: IHttpPromiseCallbackArg<any>): angular.IPromise<any> {
             if (response.status === 401) {
                 $log.error('You are unauthorised to access the requested resource (401)');
             } else if (response.status === 404) {
@@ -16,22 +20,25 @@ function configs($httpProvider) {
             }
             return $q.reject(response);
         }
-        function success(response) {
-            //Request completed successfully
+
+        function success(response: IHttpPromiseCallbackArg<any>): IHttpPromiseCallbackArg<any> {
+            // Request completed successfully
             return response;
         }
-        return function(promise) {
+
+        return (promise: angular.IPromise<any>): angular.IPromise<any> => {
             return promise.then(success, error);
-        }
+        };
     };
+
     $httpProvider.interceptors.push(interceptor);
 }
 
-function runs($rootScope, PageValues) {
-    $rootScope.$on('$routeChangeStart', function() {
+function runs($rootScope: IRootScopeService, PageValues: PageValuesType): void {
+    $rootScope.$on('$routeChangeStart', () => {
         PageValues.loading = true;
     });
-    $rootScope.$on('$routeChangeSuccess', function() {
+    $rootScope.$on('$routeChangeSuccess', () => {
         PageValues.loading = false;
     });
 }
