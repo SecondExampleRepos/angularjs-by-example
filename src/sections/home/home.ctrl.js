@@ -1,12 +1,16 @@
-'use strict';
+﻿'use strict';
+import type { PageValuesType, TutorialType } from './home.ctrl-js.types';
+import angular from 'angular';
+
 angular
     .module('app.core')
-    .controller('HomeController', function($scope, PageValues) {
-        //Set page title and description
+    .controller('HomeController', function($scope: angular.IScope, PageValues: PageValuesType) {
+        // Set page title and description
         PageValues.title = "HOME";
         PageValues.description = "Learn AngularJS using best practice real world examples.";
-        //Setup view model object
-        var vm = this;
+
+        // Setup view model object
+        const vm: { tutorials: TutorialType[] } = this;
         vm.tutorials = [
             {
                 title: "INTRODUCTION",
