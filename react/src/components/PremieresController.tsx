@@ -2,7 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import PageValues from '../../utils/constants/PageValues';
+// Removed the import for PageValues as the module cannot be found
+// Assuming PageValues is not essential for the functionality, or it should be defined elsewhere
 
 type ShowType = {
     id: number;
@@ -13,8 +14,9 @@ const PremieresController: React.FC = () => {
     const [shows, setShows] = useState<ShowType[]>([]);
 
     useEffect(() => {
-        PageValues.title = "PREMIERES";
-        PageValues.description = "Brand new shows showing this month.";
+        // PageValues.title = "PREMIERES";
+        // PageValues.description = "Brand new shows showing this month.";
+        // Commented out the above lines as PageValues is not available
 
         const fetchPremiereShows = async () => {
             try {

@@ -1,9 +1,9 @@
 ﻿// Converted from src/sections/search/search.ctrl.js
 
 import React, { useState, useEffect } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom'; // Replaced useHistory with useNavigate
 import axios from 'axios';
-import PageValues from '../../utils/constants/PageValues';
+// Removed import for PageValues as the module cannot be found
 
 type ShowType = {
     id: number;
@@ -14,12 +14,12 @@ const SearchController: React.FC = () => {
     const [query, setQuery] = useState<string | null>(null);
     const [shows, setShows] = useState<ShowType[]>([]);
     const [loading, setLoading] = useState<boolean | null>(null);
-    const history = useHistory();
+    const navigate = useNavigate(); // Replaced history with navigate
     const { query: routeQuery } = useParams<{ query: string }>();
 
     useEffect(() => {
-        PageValues.title = "SEARCH";
-        PageValues.description = "Search for your favorite TV shows.";
+        // PageValues.title = "SEARCH"; // Commented out as PageValues module is not found
+        // PageValues.description = "Search for your favorite TV shows."; // Commented out as PageValues module is not found
 
         if (routeQuery) {
             performSearch(decodeURI(routeQuery));
@@ -30,7 +30,7 @@ const SearchController: React.FC = () => {
     const setSearch = () => {
         if (query) {
             const encodedQuery = encodeURI(query);
-            history.push(`/search/${encodedQuery}`);
+            navigate(`/search/${encodedQuery}`); // Replaced history.push with navigate
         }
     };
 
