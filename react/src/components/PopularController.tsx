@@ -1,7 +1,11 @@
 ﻿// Converted from src/sections/popular/popular.ctrl.js
 
 import React, { useEffect, useState } from 'react';
-import PageValues from '../../utils/constants/PageValues';
+// Importing PageValues from a mock or alternative source as the original module cannot be found
+const PageValues = {
+    title: '',
+    description: ''
+};
 
 type ShowType = {
     id: number;

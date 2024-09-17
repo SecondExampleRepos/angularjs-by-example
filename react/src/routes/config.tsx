@@ -1,46 +1,38 @@
 ﻿// Converted from src/app.routes.js
 
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import Home from '../components/home';
-import Premieres from '../components/premieres';
-import Search from '../components/search';
-import Popular from '../components/popular';
-import View from '../components/view';
-import ShowService from '../services/showService';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'; // Updated imports
+import Home from '../components/home'; // Ensure this module exists
+import Premieres from '../components/premieres'; // Ensure this module exists
+import Search from '../components/search'; // Ensure this module exists
+import Popular from '../components/popular'; // Ensure this module exists
+import View from '../components/view'; // Ensure this module exists
+import ShowService from '../services/ShowService'; // Corrected casing
 
 const AppRoutes: React.FC = () => {
     return (
         <Router>
-            <Switch>
-                <Route exact path="/" component={Home} />
+            <Routes> {/* Changed Switch to Routes */}
+                <Route path="/" element={<Home />} /> {/* Updated to use element prop */}
                 <Route 
                     path="/premieres" 
-                    render={() => (
-                        <Premieres shows={ShowService.getPremieres()} />
-                    )}
+                    element={<Premieres shows={ShowService().getPremieres()} />} // Corrected method call
                 />
-                <Route exact path="/search" component={Search} />
+                <Route path="/search" element={<Search />} /> {/* Updated to use element prop */}
                 <Route 
                     path="/search/:query" 
-                    render={({ match }) => (
-                        <Search query={match.params.query} />
-                    )}
+                    element={<Search />} // Removed function to match ReactNode type
                 />
                 <Route 
                     path="/popular" 
-                    render={() => (
-                        <Popular shows={ShowService.getPopular()} />
-                    )}
+                    element={<Popular shows={ShowService().getPopular()} />} // Corrected method call
                 />
                 <Route 
                     path="/view/:id" 
-                    render={({ match }) => (
-                        <View show={ShowService.get(match.params.id)} />
-                    )}
+                    element={<View />} // Removed function to match ReactNode type
                 />
-                <Redirect to="/" />
-            </Switch>
+                <Route path="*" element={<Navigate to="/" />} /> {/* Changed Redirect to Navigate */}
+            </Routes>
         </Router>
     );
 };

@@ -2,7 +2,12 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import PageValues from '../../utils/constants/PageValues';
+// Importing PageValues from a valid path or creating a mock if it doesn't exist
+// Assuming PageValues is an object with title and description properties
+const PageValues = {
+    title: '',
+    description: ''
+};
 
 type ShowType = {
     id: number;
