@@ -2,7 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import PageValues from '../../utils/constants/PageValues';
+// Corrected the import path for PageValues
+import PageValues from '../utils/constants/PageValues';
 
 type ShowType = {
     id: number;
