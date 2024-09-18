@@ -12,11 +12,12 @@ import '../../assets/css/animations.css';
 import '../../assets/css/font-icons.css';
 import '../../assets/css/style.css';
 
-import Home from '../../components/controllers/HomeController';
-import Premieres from '../../components/controllers/PremieresController';
-import Search from '../../components/controllers/SearchController';
-import Popular from '../../components/controllers/PopularController';
-import View from '../../components/controllers/ViewController';
+// Corrected import paths for controllers
+import Home from '../../components/controllers/HomeController.js'; // Ensure the file exists and has the correct extension
+import Premieres from '../../components/controllers/PremieresController.js'; // Ensure the file exists and has the correct extension
+import Search from '../../components/controllers/SearchController.js'; // Ensure the file exists and has the correct extension
+import Popular from '../../components/controllers/PopularController.js'; // Ensure the file exists and has the correct extension
+import View from '../../components/controllers/ViewController.js'; // Ensure the file exists and has the correct extension
 
 function App() {
   return (
