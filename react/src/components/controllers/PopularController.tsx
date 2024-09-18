@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import PageValues from '../../../utils/constants/PageValues';
+import PageValues from '../../../utils/constants/PageValues.ts'; // Ensure the correct file extension is used
 
 type ShowType = {
     id: number;
