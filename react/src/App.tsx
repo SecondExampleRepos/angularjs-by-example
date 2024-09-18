@@ -1,12 +1,14 @@
-﻿import React from 'react';
+﻿// src/App.tsx
+
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
-import Home from '../../components/controllers/HomeController';
-import Premieres from '../../components/controllers/PremieresController';
-import Search from '../../components/controllers/SearchController';
-import Popular from '../../components/controllers/PopularController';
-import View from '../../components/controllers/ViewController';
+import Home from '../../components/controllers/HomeController'; // Removed .js to resolve module error
+import Premieres from '../../components/controllers/PremieresController'; // Removed .js to resolve module error
+import Search from '../../components/controllers/SearchController'; // Removed .js to resolve module error
+import Popular from '../../components/controllers/PopularController'; // Removed .js to resolve module error
+import View from '../../components/controllers/ViewController'; // Removed .js to resolve module error
 
 function App() {
   return (

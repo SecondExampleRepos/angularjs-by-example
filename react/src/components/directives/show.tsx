@@ -14,7 +14,7 @@ const Show: React.FC<ShowProps> = ({ show }) => {
 
     useEffect(() => {
         if (show.id) {
-            ShowService.get(show.id).then((response) => {
+            ShowService.get(show.id.toString()).then((response) => { // Convert number to string
                 setGenres(response.genres);
             });
         }

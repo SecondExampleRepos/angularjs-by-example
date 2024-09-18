@@ -1,7 +1,7 @@
 ﻿// Converted from src/sections/popular/popular.ctrl.js
 
 import React, { useEffect, useState } from 'react';
-import ShowService from '../../services/showService';
+import ShowService from '../../services/ShowService';
 import PageValues from '../../utils/constants/PageValues';
 
 type Show = {

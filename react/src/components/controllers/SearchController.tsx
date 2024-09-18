@@ -1,8 +1,8 @@
 ﻿// Converted from src/sections/search/search.ctrl.js
 
 import React, { useState, useEffect } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
-import ShowService from '../../services/showService';
+import { useNavigate, useParams } from 'react-router-dom'; // Updated import to useNavigate
+import ShowService from '../../services/ShowService'; // Corrected casing of the import
 import PageValues from '../../utils/constants/PageValues';
 
 type Show = {
@@ -11,7 +11,7 @@ type Show = {
 };
 
 const SearchController: React.FC = () => {
-    const history = useHistory();
+    const navigate = useNavigate(); // Updated to useNavigate
     const { query } = useParams<{ query: string }>();
     const [searchQuery, setSearchQuery] = useState<string | null>(null);
     const [shows, setShows] = useState<Show[]>([]);
@@ -20,7 +20,7 @@ const SearchController: React.FC = () => {
     useEffect(() => {
         PageValues.title = "SEARCH";
         PageValues.description = "Search for your favorite TV shows.";
-        
+
         if (query) {
             performSearch(decodeURI(query));
             setSearchQuery(decodeURI(query));
@@ -30,7 +30,7 @@ const SearchController: React.FC = () => {
     const setSearch = () => {
         if (searchQuery) {
             const encodedQuery = encodeURI(searchQuery);
-            history.push(`/search/${encodedQuery}`);
+            navigate(`/search/${encodedQuery}`); // Updated to navigate
         }
     };
 
@@ -51,7 +51,7 @@ const SearchController: React.FC = () => {
                 placeholder="Search for TV shows"
             />
             <button onClick={setSearch}>Search</button>
-            
+
             {loading ? (
                 <p>Loading...</p>
             ) : (
