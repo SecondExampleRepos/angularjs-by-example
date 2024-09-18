@@ -5,7 +5,7 @@ const AppRouter = () => {
     return (
         <Router>
             <Routes>
-                {/* Add routes here */}
+                {/* SECOND AGENT: [MISSING CONTEXT] - Need details of child routers to add them accurately */}
             </Routes>
         </Router>
     );
