@@ -1,7 +1,7 @@
 ﻿// Converted from src/sections/popular/popular.ctrl.js
 
 import React, { useEffect, useState } from 'react';
-import PageValues from '../../utils/constants/PageValues';
+import PageValues from '../../utils/constants/PageValues'; // Ensure the correct file extension is used
 
 type ShowType = {
     id: number;
