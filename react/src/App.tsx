@@ -2,11 +2,11 @@
 import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import Home from '../../components/controllers/HomeController';
-import Premieres from '../../components/controllers/PremieresController';
-import Search from '../../components/controllers/SearchController';
-import Popular from '../../components/controllers/PopularController';
-import View from '../../components/controllers/ViewController';
+import Home from './components/controllers/HomeController'; // Corrected path
+import Premieres from './components/controllers/PremieresController'; // Corrected path
+import Search from './components/controllers/SearchController'; // Corrected path
+import Popular from './components/controllers/PopularController'; // Corrected path
+import View from './components/controllers/ViewController'; // Corrected path
 
 // Converted from src/app.routes.js
 
