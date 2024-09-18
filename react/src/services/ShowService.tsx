@@ -44,14 +44,14 @@ const ShowService: ShowServiceType = {
 
 function makeRequest(url: string, params: Record<string, any>) {
   const requestUrl = `${BASE_URL}/${url}?api_key=${API_KEY}`;
-  
+
   const queryString = Object.entries(params)
     .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
     .join('&');
 
   return axios.get(`${requestUrl}&${queryString}`, {
     headers: { 'Content-Type': 'application/json' },
-    cache: true
+    // Axios does not support a `cache` option directly. This should be handled by the server or a service worker.
   })
     .then(response => response.data)
     .catch(dataServiceError);
