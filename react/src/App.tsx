@@ -1,10 +1,12 @@
-﻿import React from 'react';
+﻿// src/App.tsx
+
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from '../components/controllers/HomeController';
-import Premieres from '../components/controllers/PremieresController';
-import Search from '../components/controllers/SearchController';
-import Popular from '../components/controllers/PopularController';
-import View from '../components/controllers/ViewController';
+import Home from './components/Home'; // Updated path
+import Premieres from './components/Premieres'; // Updated path
+import Search from './components/Search'; // Updated path
+import Popular from './components/Popular'; // Updated path
+import View from './components/View'; // Updated path
 import logo from './logo.svg';
 import './App.css';
 
