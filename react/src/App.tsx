@@ -1,4 +1,5 @@
-import React from 'react';
+﻿import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 
@@ -23,4 +24,14 @@ function App() {
   );
 }
 
-export default App;
+const AppRouter = () => {
+  return (
+    <Router>
+      <Routes>
+        {/* SECOND AGENT: [MISSING CONTEXT] - Need details of child routers to add them accurately */}
+      </Routes>
+    </Router>
+  );
+}
+
+export default AppRouter;
