@@ -1,6 +1,15 @@
-import React from 'react';
+﻿import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import './index.css';
+import './sections/home/home.css';
+import './sections/premieres/premieres.css';
+import './sections/search/search.css';
+import './sections/view/view.css';
+import './components/show/show.css';
+import './assets/css/animations.css';
+import './assets/css/font-icons.css';
+import './assets/css/style.css';
 
 function App() {
   return (
