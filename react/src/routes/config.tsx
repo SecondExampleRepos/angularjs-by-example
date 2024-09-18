@@ -1,45 +1,37 @@
 ﻿// Converted from src/app.routes.js
 
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import Home from '../components/home';
-import Premieres from '../components/premieres';
-import Search from '../components/search';
-import Popular from '../components/popular';
-import View from '../components/view';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import Home from '../components/HomeController';
+import Premieres from '../components/PremieresController';
+import Search from '../components/SearchController';
+import Popular from '../components/PopularController';
+import View from '../components/ViewController';
 
 const AppRoutes: React.FC = () => {
     return (
         <Router>
-            <Switch>
-                <Route exact path="/" component={Home} />
+            <Routes>
+                <Route path="/" element={<Home />} />
                 <Route 
                     path="/premieres" 
-                    render={(props) => (
-                        <Premieres {...props} />
-                    )}
+                    element={<Premieres />}
                 />
-                <Route exact path="/search" component={Search} />
+                <Route path="/search" element={<Search />} />
                 <Route 
                     path="/search/:query" 
-                    render={(props) => (
-                        <Search {...props} />
-                    )}
+                    element={<Search />}
                 />
                 <Route 
                     path="/popular" 
-                    render={(props) => (
-                        <Popular {...props} />
-                    )}
+                    element={<Popular />}
                 />
                 <Route 
                     path="/view/:id" 
-                    render={(props) => (
-                        <View {...props} />
-                    )}
+                    element={<View />}
                 />
-                <Redirect to="/" />
-            </Switch>
+                <Route path="*" element={<Navigate to="/" />} />
+            </Routes>
         </Router>
     );
 };
