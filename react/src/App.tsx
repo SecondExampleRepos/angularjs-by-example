@@ -1,10 +1,10 @@
 ﻿import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import Home from '../../components/controllers/HomeController';
-import Premieres from '../../components/controllers/PremieresController';
-import Search from '../../components/controllers/SearchController';
-import Popular from '../../components/controllers/PopularController';
-import View from '../../components/controllers/ViewController';
+import Home from './components/controllers/HomeController';
+import Premieres from './components/controllers/PremieresController';
+import Search from './components/controllers/SearchController';
+import Popular from './components/controllers/PopularController';
+import View from './components/controllers/ViewController';
 
 // CSS imports
 import 'react/assets/show.css';

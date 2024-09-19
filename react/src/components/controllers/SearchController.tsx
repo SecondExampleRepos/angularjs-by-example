@@ -1,7 +1,7 @@
 ﻿// Converted from src/sections/search/search.ctrl.js
 
 import React, { useState, useEffect } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom'; // Updated import
 import axios from 'axios';
 
 interface Show {
@@ -10,7 +10,7 @@ interface Show {
 }
 
 const SearchController: React.FC = () => {
-  const history = useHistory();
+  const navigate = useNavigate(); // Updated to useNavigate
   const { query } = useParams<{ query: string }>();
   const [searchQuery, setSearchQuery] = useState<string | null>(null);
   const [shows, setShows] = useState<Show[]>([]);
@@ -26,7 +26,7 @@ const SearchController: React.FC = () => {
   const setSearch = () => {
     if (searchQuery) {
       const encodedQuery = encodeURI(searchQuery);
-      history.push(`/search/${encodedQuery}`);
+      navigate(`/search/${encodedQuery}`); // Updated to navigate
     }
   };
 
@@ -53,7 +53,7 @@ const SearchController: React.FC = () => {
         placeholder="Enter show name"
       />
       <button onClick={setSearch}>Search</button>
-      
+
       {loading ? (
         <div>Loading...</div>
       ) : (

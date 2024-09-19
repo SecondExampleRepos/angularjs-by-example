@@ -1,9 +1,10 @@
 ﻿// Converted from src/directives/ngEnter.drct.js
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, ReactNode } from 'react';
 
 interface NgEnterProps {
   onEnter: () => void;
+  children: ReactNode; // Added children to the interface
 }
 
 const NgEnter: React.FC<NgEnterProps> = ({ onEnter, children }) => {
