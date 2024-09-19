@@ -22,21 +22,21 @@ const ShowService: ShowServiceType = {
         return makeRequest('discover/tv', { 'first_air_date.gte': formattedDate, append_to_response: 'genres' })
             .then(data => data.results);
     },
-    
+
     get(id) {
         return makeRequest(`tv/${id}`, {});
     },
-    
+
     search(query) {
         return makeRequest('search/tv', { query })
             .then(data => data.results);
     },
-    
+
     getPopular() {
         return makeRequest('tv/popular', {})
             .then(data => data.results);
     },
-    
+
     getCast(id) {
         return makeRequest(`tv/${id}/credits`, {});
     }
@@ -47,10 +47,10 @@ function makeRequest(url: string, params: Record<string, any>) {
     const queryString = Object.entries(params)
         .map(([key, value]) => `${key}=${value}`)
         .join('&');
-    
+
     return axios.get(`${requestUrl}&${queryString}`, {
-        headers: { 'Content-Type': 'application/json' },
-        cache: true
+        headers: { 'Content-Type': 'application/json' }
+        // Removed cache as it is not a valid AxiosRequestConfig option
     })
     .then(response => response.data)
     .catch(dataServiceError);
