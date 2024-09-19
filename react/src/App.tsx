@@ -6,6 +6,13 @@ import Search from '../../components/controllers/SearchController';
 import Popular from '../../components/controllers/PopularController';
 import View from '../../components/controllers/ViewController';
 
+// CSS imports
+import 'react/assets/show.css';
+import 'react/assets/home.css';
+import 'react/assets/search.css';
+import 'react/assets/premieres.css';
+import 'react/assets/view.css';
+
 // Converted from src/app.routes.js
 
 function App() {
