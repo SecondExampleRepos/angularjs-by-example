@@ -51,14 +51,14 @@ const ShowService: ShowServiceType = {
 
 function makeRequest(url: string, params: Record<string, any>) {
     const requestUrl = `${BASE_URL}/${url}?api_key=${API_KEY}`;
-    
+
     const queryString = Object.entries(params)
         .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
         .join('&');
 
     return axios.get(`${requestUrl}&${queryString}`, {
-        headers: { 'Content-Type': 'application/json' },
-        cache: true
+        headers: { 'Content-Type': 'application/json' }
+        // Removed cache as it is not a valid AxiosRequestConfig option
     })
     .then(response => response.data)
     .catch(dataServiceError);
