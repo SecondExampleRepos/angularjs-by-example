@@ -12,7 +12,7 @@ const PopularController: React.FC = () => {
   const [shows, setShows] = useState<Show[]>([]);
 
   useEffect(() => {
-    ShowService.getPopular().then((data) => {
+    ShowService.getPopularShows().then((data) => {
       setShows(data);
     });
   }, []);

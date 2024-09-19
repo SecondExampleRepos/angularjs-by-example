@@ -16,7 +16,7 @@ const ViewController: React.FC = () => {
 
   useEffect(() => {
     if (id) {
-      ShowService.get(id).then((data) => {
+      ShowService.getShow(id).then((data) => { // Corrected method name to getShow
         setShow(data);
       });
     }
@@ -24,7 +24,7 @@ const ViewController: React.FC = () => {
 
   useEffect(() => {
     if (show) {
-      ShowService.getCast(show.id).then((response) => {
+      ShowService.getCast(show.id.toString()).then((response) => { // Converted number to string
         setShow((prevShow) => prevShow ? { ...prevShow, cast: response.cast } : null);
       });
     }
