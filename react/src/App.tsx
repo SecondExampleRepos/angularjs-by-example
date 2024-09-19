@@ -8,6 +8,11 @@ import Search from '../../components/controllers/SearchController';
 import Popular from '../../components/controllers/PopularController';
 import View from '../../components/controllers/ViewController';
 
+// Import CSS files
+import 'react/src/assets/src/assets/css/animations.css';
+import 'react/src/assets/src/assets/css/font-icons.css';
+import 'react/src/assets/src/assets/css/style.css';
+
 function App() {
   return (
     <Router>
