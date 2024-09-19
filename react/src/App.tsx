@@ -8,6 +8,13 @@ import Search from '../../components/controllers/SearchController';
 import Popular from '../../components/controllers/PopularController';
 import View from '../../components/controllers/ViewController';
 
+// CSS imports
+import '../../assets/show.css';
+import '../../assets/home.css';
+import '../../assets/search.css';
+import '../../assets/premieres.css';
+import '../../assets/view.css';
+
 function App() {
   return (
     <Router>
