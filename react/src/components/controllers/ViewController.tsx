@@ -24,9 +24,7 @@ const ViewController: React.FC = () => {
             });
 
             ShowService.getCast(id).then((response) => {
-                if (show) {
-                    setShow({ ...show, cast: response.cast });
-                }
+                setShow(prevShow => prevShow ? { ...prevShow, cast: response.cast } : null);
             });
         }
     }, [id]);
