@@ -1,11 +1,11 @@
 ﻿import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import Home from '../../components/controllers/Home';
-import Premieres from '../../components/controllers/Premieres';
-import Search from '../../components/controllers/Search';
-import Popular from '../../components/controllers/Popular';
-import View from '../../components/controllers/View';
-import ShowService from '../../services/ShowService';
+import HomeController from './components/controllers/HomeController';
+import PremieresController from './components/controllers/PremieresController';
+import SearchController from './components/controllers/SearchController';
+import PopularController from './components/controllers/PopularController';
+import ViewController from './components/controllers/ViewController';
+import ShowService from './services/ShowService';
 
 // Converted from src/app.routes.js
 
@@ -13,23 +13,23 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<HomeController />} />
         <Route
           path="/premieres"
-          element={<Premieres shows={ShowService.getPremieres()} />}
+          element={<PremieresController />}
         />
-        <Route path="/search" element={<Search />} />
+        <Route path="/search" element={<SearchController />} />
         <Route
           path="/search/:query"
-          element={<Search />}
+          element={<SearchController />}
         />
         <Route
           path="/popular"
-          element={<Popular shows={ShowService.getPopular()} />}
+          element={<PopularController />}
         />
         <Route
           path="/view/:id"
-          element={<View show={ShowService.get()} />}
+          element={<ViewController />}
         />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

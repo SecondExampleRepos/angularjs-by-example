@@ -1,7 +1,7 @@
 ﻿// Converted from src/sections/search/search.ctrl.js
 
 import React, { useState, useEffect } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import ShowService from '../../services/ShowService';
 
 interface Show {
@@ -10,7 +10,7 @@ interface Show {
 }
 
 const SearchController: React.FC = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { query } = useParams<{ query: string }>();
   const [searchQuery, setSearchQuery] = useState<string | null>(null);
   const [shows, setShows] = useState<Show[]>([]);
@@ -19,13 +19,13 @@ const SearchController: React.FC = () => {
   const setSearch = () => {
     if (searchQuery) {
       const encodedQuery = encodeURIComponent(searchQuery);
-      history.push(`/search/${encodedQuery}`);
+      navigate(`/search/${encodedQuery}`);
     }
   };
 
   const performSearch = (query: string) => {
     setLoading(true);
-    ShowService.search(query).then((response) => {
+    ShowService.searchShows(query).then((response) => {
       setShows(response);
       setLoading(false);
     });
