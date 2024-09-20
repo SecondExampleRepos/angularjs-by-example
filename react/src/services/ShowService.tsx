@@ -27,8 +27,7 @@ async function makeRequest(url: string, params: Record<string, any>) {
         const response = await axios.get(`${requestUrl}&${queryString}`, {
             headers: {
                 'Content-Type': 'application/json'
-            },
-            cache: true
+            }
         });
         return response.data;
     } catch (error) {
