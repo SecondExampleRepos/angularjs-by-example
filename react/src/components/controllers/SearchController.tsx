@@ -21,7 +21,7 @@ const SearchController: React.FC = () => {
 
     const performSearch = (searchQuery: string) => {
         setLoading(true);
-        ShowService.search(searchQuery).then((response) => {
+        ShowService.searchShows(searchQuery).then((response) => {
             setShows(response);
             setLoading(false);
         });
@@ -33,7 +33,7 @@ const SearchController: React.FC = () => {
 
         const searchParams = new URLSearchParams(location.search);
         const queryParam = searchParams.get('query');
-        
+
         if (queryParam) {
             performSearch(decodeURIComponent(queryParam));
             setQuery(decodeURIComponent(queryParam));
@@ -49,9 +49,9 @@ const SearchController: React.FC = () => {
                 placeholder="Search for TV shows"
             />
             <button onClick={setSearch}>Search</button>
-            
+
             {loading && <div>Loading...</div>}
-            
+
             <ul>
                 {shows.map((show, index) => (
                     <li key={index}>{show.name}</li>

@@ -17,7 +17,7 @@ const PopularController: React.FC = () => {
         PageValues.title = "POPULAR";
         PageValues.description = "The most popular TV shows.";
 
-        ShowService.getPopular().then((data) => {
+        ShowService.getPopularShows().then((data) => {
             setShows(data);
             setLoading(false);
         });

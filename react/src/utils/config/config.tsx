@@ -1,11 +1,11 @@
 ﻿// Converted from src/app.routes.js
 
 import { RouteObject } from 'react-router-dom';
-import Home from '../../components/controllers/Home';
-import Premieres from '../../components/controllers/Premieres';
-import Search from '../../components/controllers/Search';
-import Popular from '../../components/controllers/Popular';
-import View from '../../components/controllers/View';
+import Home from '../../components/controllers/HomeController';
+import Premieres from '../../components/controllers/PremieresController';
+import Search from '../../components/controllers/SearchController';
+import Popular from '../../components/controllers/PopularController';
+import View from '../../components/controllers/ViewController';
 import ShowService from '../../services/ShowService';
 
 const routes: RouteObject[] = [
@@ -33,7 +33,7 @@ const routes: RouteObject[] = [
         path: '/popular',
         element: <Popular />,
         loader: async () => {
-            const shows = await ShowService.getPopular();
+            const shows = await ShowService.getPopularShows();
             return { shows };
         },
     },
@@ -41,7 +41,7 @@ const routes: RouteObject[] = [
         path: '/view/:id',
         element: <View />,
         loader: async ({ params }) => {
-            const show = await ShowService.get(params.id);
+            const show = await ShowService.getShow(Number(params.id));
             return { show };
         },
     },

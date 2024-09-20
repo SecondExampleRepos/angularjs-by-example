@@ -14,7 +14,7 @@ const Show: React.FC<ShowProps> = ({ show }) => {
 
     useEffect(() => {
         if (show.id) {
-            ShowService.get(show.id).then((response) => {
+            ShowService.getShow(show.id).then((response) => {
                 setGenres(response.genres);
             });
         }

@@ -17,13 +17,14 @@ const ViewController: React.FC = () => {
 
     useEffect(() => {
         if (id) {
-            ShowService.get(id).then((data) => {
+            const numericId = parseInt(id, 10); // Convert id to a number
+            ShowService.getShow(numericId).then((data) => { // Use getShow instead of get
                 setShow(data);
                 PageValues.title = "VIEW";
                 PageValues.description = `Overview, seasons & info for '${data.original_name}'.`;
             });
 
-            ShowService.getCast(id).then((response) => {
+            ShowService.getCast(numericId).then((response) => {
                 setShow((prevShow) => prevShow ? { ...prevShow, cast: response.cast } : null);
             });
         }
