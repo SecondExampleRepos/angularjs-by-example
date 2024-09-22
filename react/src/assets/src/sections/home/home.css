@@ -4,7 +4,7 @@
     right: 0;
 }
 .home-banner {
-    background: url('../../assets/images/shattered.png');
+    background: url('../../../assets/images/shattered.png');
 }
 .home-banner .inner {
     padding: 60px 0 0 0;
@@ -68,33 +68,51 @@
     height: 80px;
     float: left;
     background-color: #333;
-    margin: 0 20px 0 0;
-    text-align: center;
-    line-height: 80px;
-    font-size: 40px;
-    color: #CCC;
-}
-.tutorials li.offline .number {
-    background-color: #919191;
-    color: #666;
-}
-.share-buttons {
-    float: right;
-    width: 330px;
-    height: 50px;
-    margin-top: -10px;
-}
-.home-buttons {
-    text-align: center;
-    padding: 20px 0 40px 0;
-}
-.no-data.tuts {
-    line-height: 50px;
-    margin-bottom: 30px;
-}
-@media(max-width:992px) {
-    .home-banner .inner {
-        width: 100%;
-        padding: 20px;
-    }
-}
+    margin: 0 20px 0 0; 
+text-align:center; 
+line-height:
+80
+ px; 
+font-size:
+40
+ px; 
+color:
+#CCC
+ ;
+ }
+ .tutorials li.offline .number { 
+background-color:
+#919191
+ ; 
+color:
+#666
+ ;
+ }
+ .share-buttons { 
+float:right; 
+width:
+330
+ px; 
+height:
+50
+ px; 
+margin-top:-10 px; } 
+.home-buttons { text-align:center; padding:
+20
+ px
+0
+40
+ px
+0
+ ; } 
+.no-data.tuts { line-height:
+50
+ px; margin-bottom:
+30
+ px; } @media(max-width:
+992
+ px) { .home-banner .inner { width:
+100%
+ ; padding:
+20
+ px; } }
