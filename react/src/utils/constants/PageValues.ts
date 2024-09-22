@@ -1,5 +1,3 @@
-// Converted from src/services/page.val.js
-
 type PageValuesType = {
     title: string | null;
     description: string | null;

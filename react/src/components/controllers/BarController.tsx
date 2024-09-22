@@ -1,5 +1,3 @@
-// Converted from src/components/bar/bar.ctrl.js
-
 import React from 'react';
 import PageValues from '../../utils/constants/PageValues';
 
