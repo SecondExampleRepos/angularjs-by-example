@@ -1,6 +1,14 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import 'react/src/assets/src/sections/home/home.css';
+import 'react/src/assets/src/sections/premieres/premieres.css';
+import 'react/src/assets/src/sections/search/search.css';
+import 'react/src/assets/src/sections/view/view.css';
+import 'react/src/assets/src/components/show/show.css';
+import 'react/src/assets/src/assets/css/animations.css';
+import 'react/src/assets/src/assets/css/font-icons.css';
+import 'react/src/assets/src/assets/css/style.css';
 
 function App() {
   return (
