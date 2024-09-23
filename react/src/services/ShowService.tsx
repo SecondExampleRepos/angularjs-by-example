@@ -1,6 +1,6 @@
 // Converted from src/services/show.fct.js
 
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import moment from 'moment';
 
 const API_KEY = '87de9079e74c828116acce677f6f255b';
@@ -31,11 +31,14 @@ const makeRequest = async (url: string, params: Record<string, any>) => {
     const requestUrl = `${BASE_URL}/${url}?api_key=${API_KEY}`;
     const queryString = new URLSearchParams(params).toString();
 
+    const config: AxiosRequestConfig = {
+        headers: { 'Content-Type': 'application/json' },
+        params
+        // Removed `cache` as it is not a standard Axios option
+    };
+
     try {
-        const response = await axios.get(`${requestUrl}&${queryString}`, {
-            headers: { 'Content-Type': 'application/json' },
-            cache: true
-        });
+        const response = await axios.get(`${requestUrl}&${queryString}`, config);
         return response.data;
     } catch (error) {
         console.error('XHR Failed for ShowService', error);
