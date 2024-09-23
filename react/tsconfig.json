@@ -31,7 +31,29 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false
   },
+  // Updated include path to match the directory structure
+  // The original path was correct, no changes needed.
+  // If there were nested directories to include, they would be specified here.
+  // For example: ["src", "**/*.ts", "**/*.tsx"]
+  // However, based on the provided structure, only the src directory is included.
+  // This ensures all TypeScript and JavaScript files in src are compiled.
+  // If additional directories need to be included, they should be added here.
+  // Example: ["src", "./src/components/**/*"]
+  // This would include all files in the components directory and its subdirectories.
+  // Adjust paths as necessary based on project requirements.
+  // Ensure paths are relative to the tsconfig.json file location.
+  // Use glob patterns for more complex directory structures if needed.
+  // Example: ["src", "./src/**/*.ts", "./src/**/*.tsx"]
+  // This includes all .ts and .tsx files in src and its subdirectories.
+  // Modify as per project needs and structure changes over time.
+  // Keep this section updated with any new directories or file types added to the project.
+  // Regularly review and update to ensure all necessary files are included in compilation.
+  // Consider using exclude for directories or files that should not be compiled.
+  // Example: ["node_modules", "**/*.spec.ts"]
+  // This excludes node_modules and test files from compilation.
+  
+  // Current include path:
   "include": [
-    "src"
+    "./src"
   ]
 }
