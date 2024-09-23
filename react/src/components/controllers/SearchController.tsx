@@ -1,9 +1,9 @@
 // Converted from src/sections/search/search.ctrl.js
 
 import React, { useState, useEffect } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom'; // useHistory replaced with useNavigate
 import axios from 'axios';
-import PageValues from '../../../utils/constants/PageValues';
+import PageValues from '../../../utils/constants/PageValues'; // Ensure the path is correct and the file exists
 
 type ShowType = {
     id: number;
@@ -11,7 +11,7 @@ type ShowType = {
 };
 
 const SearchController: React.FC = () => {
-    const history = useHistory();
+    const navigate = useNavigate(); // useHistory replaced with useNavigate
     const { query } = useParams<{ query: string }>();
     const [searchQuery, setSearchQuery] = useState<string | null>(null);
     const [shows, setShows] = useState<ShowType[]>([]);
@@ -20,7 +20,7 @@ const SearchController: React.FC = () => {
     const setSearch = () => {
         if (searchQuery) {
             const encodedQuery = encodeURIComponent(searchQuery);
-            history.push(`/search/${encodedQuery}`);
+            navigate(`/search/${encodedQuery}`); // history.push replaced with navigate
         }
     };
 

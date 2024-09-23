@@ -1,7 +1,7 @@
 // Converted from src/components/bar/bar.ctrl.js
 
 import React from 'react';
-import PageValues from '../../../utils/constants/PageValues';
+import PageValues from '../../utils/constants/PageValues'; // Corrected the import path
 
 const BarController: React.FC = () => {
     // Setup the view model object

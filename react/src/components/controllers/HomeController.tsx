@@ -1,7 +1,7 @@
 // Converted from src/sections/home/home.ctrl.js
 
 import React from 'react';
-import PageValues from '../../../utils/constants/PageValues';
+import PageValues from '../../utils/constants/PageValues'; // Corrected the import path
 
 type TutorialType = {
     title: string;
