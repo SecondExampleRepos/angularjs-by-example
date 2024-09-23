@@ -3,8 +3,8 @@
 import axios from 'axios';
 import moment from 'moment';
 
-const API_KEY = '87de9079e74c828116acce677f6f255b';
-const BASE_URL = 'http://api.themoviedb.org/3';
+import API_KEY from '../utils/constants/API_KEY';
+import BASE_URL from '../utils/constants/BASE_URL';
 
 type ShowType = {
     id: number;
