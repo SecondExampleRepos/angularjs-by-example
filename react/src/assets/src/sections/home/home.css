@@ -4,7 +4,7 @@
     right: 0;
 }
 .home-banner {
-    background: url('../../assets/images/shattered.png');
+    background: url('../../../assets/images/shattered.png');
 }
 .home-banner .inner {
     padding: 60px 0 0 0;
@@ -80,21 +80,22 @@
 }
 .share-buttons {
     float: right;
-    width: 330px;
-    height: 50px;
-    margin-top: -10px;
-}
-.home-buttons {
-    text-align: center;
-    padding: 20px 0 40px 0;
-}
-.no-data.tuts {
-    line-height: 50px;
-    margin-bottom: 30px;
-}
-@media(max-width:992px) {
-    .home-banner .inner {
-        width: 100%;
-        padding: 20px;
-    }
-}
+    width: 330px; 
+   height :50 px; 
+   margin-top : -10 px; 
+} 
+.home-buttons { 
+   text-align : center; 
+   padding :20 px ; 
+   padding-bottom :40 px ; 
+} 
+.no-data.tuts { 
+   line-height :50 px ; 
+   margin-bottom :30 px ; 
+} 
+@media(max-width :992 px ) { 
+   .home-banner .inner { 
+      width :100 % ; 
+      padding :20 px ; 
+   } 
+} 

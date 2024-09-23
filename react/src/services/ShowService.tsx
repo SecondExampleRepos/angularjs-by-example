@@ -1,10 +1,8 @@
-// Converted from src/services/show.fct.js
-
 import axios from 'axios';
 import moment from 'moment';
 
-const API_KEY = '87de9079e74c828116acce677f6f255b';
-const BASE_URL = 'http://api.themoviedb.org/3';
+import API_KEY from '../utils/constants/API_KEY';
+import BASE_URL from '../utils/constants/BASE_URL';
 
 type ShowType = {
     id: number;
@@ -30,7 +28,7 @@ type ShowDetails = {
 const makeRequest = async (url: string, params: Record<string, any>) => {
     const requestUrl = `${BASE_URL}/${url}?api_key=${API_KEY}`;
     const queryString = new URLSearchParams(params).toString();
-    
+
     try {
         const response = await axios.get(`${requestUrl}&${queryString}`, {
             headers: { 'Content-Type': 'application/json' },
@@ -46,12 +44,12 @@ const makeRequest = async (url: string, params: Record<string, any>) => {
 const getPremieres = async (): Promise<ShowType[]> => {
     const date = new Date();
     date.setDate(1);
-    
+
     const data = await makeRequest('discover/tv', { 
         'first_air_date.gte': moment(date).format('DD-MM-YYYY'), 
         append_to_response: 'genres' 
     });
-    
+
     return data.results;
 };
 
@@ -61,19 +59,19 @@ const getShowDetails = async (id: number): Promise<ShowDetails> => {
 
 const getCast = async (id: number): Promise<CastMember[]> => {
     const data = await makeRequest(`tv/${id}/credits`, {});
-    
+
     return data.cast;
 };
 
 const searchShows = async (query: string): Promise<ShowType[]> => {
     const data = await makeRequest('search/tv', { query });
-    
+
     return data.results;
 };
 
 const getPopularShows = async (): Promise<ShowType[]> => {
     const data = await makeRequest('tv/popular', {});
-    
+
     return data.results;
 };
 

@@ -1,3 +1,4 @@
+react/src/utils/constants/PageValues.ts
 // Converted from src/services/page.val.js
 
 type PageValuesType = {

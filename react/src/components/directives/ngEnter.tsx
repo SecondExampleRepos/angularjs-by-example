@@ -1,5 +1,3 @@
-// Converted from src/directives/ngEnter.drct.js
-
 import React, { useEffect, useRef } from 'react';
 
 interface NgEnterProps {

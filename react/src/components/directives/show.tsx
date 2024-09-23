@@ -1,5 +1,3 @@
-// Converted from src/components/show/show.drct.js
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
