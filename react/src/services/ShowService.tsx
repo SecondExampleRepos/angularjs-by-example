@@ -31,11 +31,11 @@ type ShowDetails = {
 const makeRequest = async (url: string, params: Record<string, any>) => {
     const requestUrl = `${BASE_URL}/${url}?api_key=${API_KEY}`;
     const queryString = new URLSearchParams(params).toString();
-    
+
     try {
         const response = await axios.get(`${requestUrl}&${queryString}`, {
             headers: { 'Content-Type': 'application/json' },
-            cache: true
+            // Removed cache as it is not a valid AxiosRequestConfig option
         });
         return response.data;
     } catch (error) {
@@ -47,12 +47,12 @@ const makeRequest = async (url: string, params: Record<string, any>) => {
 const getPremieres = async (): Promise<ShowType[]> => {
     const date = new Date();
     date.setDate(1);
-    
+
     const data = await makeRequest('discover/tv', { 
         'first_air_date.gte': moment(date).format('DD-MM-YYYY'), 
         append_to_response: 'genres' 
     });
-    
+
     return data.results;
 };
 
@@ -62,19 +62,19 @@ const getShowDetails = async (id: number): Promise<ShowDetails> => {
 
 const getCast = async (id: number): Promise<CastMember[]> => {
     const data = await makeRequest(`tv/${id}/credits`, {});
-    
+
     return data.cast;
 };
 
 const searchShows = async (query: string): Promise<ShowType[]> => {
     const data = await makeRequest('search/tv', { query });
-    
+
     return data.results;
 };
 
 const getPopularShows = async (): Promise<ShowType[]> => {
     const data = await makeRequest('tv/popular', {});
-    
+
     return data.results;
 };
 
