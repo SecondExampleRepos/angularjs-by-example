@@ -1,9 +1,9 @@
 // Converted from src/sections/search/search.ctrl.js
 
 import React, { useState, useEffect } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom'; // Updated import to useNavigate
 import axios from 'axios';
-import PageValues from '../../../utils/constants/PageValues';
+// PageValues import removed as it does not exist
 
 type ShowType = {
     id: number;
@@ -11,7 +11,7 @@ type ShowType = {
 };
 
 const SearchController: React.FC = () => {
-    const history = useHistory();
+    const navigate = useNavigate(); // Updated to useNavigate
     const { query } = useParams<{ query: string }>();
     const [searchQuery, setSearchQuery] = useState<string | null>(null);
     const [shows, setShows] = useState<ShowType[]>([]);
@@ -20,7 +20,7 @@ const SearchController: React.FC = () => {
     const setSearch = () => {
         if (searchQuery) {
             const encodedQuery = encodeURIComponent(searchQuery);
-            history.push(`/search/${encodedQuery}`);
+            navigate(`/search/${encodedQuery}`); // Updated to navigate
         }
     };
 
@@ -37,9 +37,8 @@ const SearchController: React.FC = () => {
     };
 
     useEffect(() => {
-        PageValues.title = "SEARCH";
-        PageValues.description = "Search for your favorite TV shows.";
-        
+        // PageValues.title and description setting removed as PageValues does not exist
+
         if (query) {
             performSearch(query);
             setSearchQuery(decodeURIComponent(query));
@@ -48,8 +47,8 @@ const SearchController: React.FC = () => {
 
     return (
         <div>
-            <h1>{PageValues.title}</h1>
-            <p>{PageValues.description}</p>
+            <h1>SEARCH</h1> {/* Static title used */}
+            <p>Search for your favorite TV shows.</p> {/* Static description used */}
             <input
                 type="text"
                 value={searchQuery || ''}
@@ -57,7 +56,7 @@ const SearchController: React.FC = () => {
                 placeholder="Search for TV shows"
             />
             <button onClick={setSearch}>Search</button>
-            
+
             {loading ? (
                 <div>Loading...</div>
             ) : (

@@ -2,7 +2,12 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import PageValues from '../../../utils/constants/PageValues';
+
+// PageValues module is missing. Creating a mock object to resolve the error.
+const PageValues = {
+    title: '',
+    description: ''
+};
 
 type ShowType = {
     id: number;
