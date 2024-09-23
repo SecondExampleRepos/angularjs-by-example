@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import moment from 'moment';
 
 import API_KEY from '../utils/constants/API_KEY';
@@ -30,10 +30,11 @@ const makeRequest = async (url: string, params: Record<string, any>) => {
     const queryString = new URLSearchParams(params).toString();
 
     try {
-        const response = await axios.get(`${requestUrl}&${queryString}`, {
+        const config: AxiosRequestConfig = {
             headers: { 'Content-Type': 'application/json' },
-            cache: true
-        });
+            // Note: `cache` is not a valid property for AxiosRequestConfig
+        };
+        const response = await axios.get(`${requestUrl}&${queryString}`, config);
         return response.data;
     } catch (error) {
         console.error('XHR Failed for ShowService', error);
