@@ -1,7 +1,7 @@
 // Converted from src/sections/search/search.ctrl.js
 
 import React, { useState, useEffect } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom'; // useHistory replaced with useNavigate
 import axios from 'axios';
 
 interface Show {
@@ -18,8 +18,8 @@ const SearchController: React.FC = () => {
   const [query, setQuery] = useState<string | null>(null);
   const [shows, setShows] = useState<Show[]>([]);
   const [loading, setLoading] = useState<boolean | null>(null);
-  const history = useHistory();
-  const { query: routeQuery } = useParams<SearchParams>();
+  const navigate = useNavigate(); // useNavigate hook used instead of useHistory
+  const { query: routeQuery } = useParams<{ query: string }>(); // Corrected type constraint
 
   useEffect(() => {
     if (routeQuery) {
@@ -31,7 +31,7 @@ const SearchController: React.FC = () => {
   const setSearch = () => {
     if (query) {
       const encodedQuery = encodeURI(query);
-      history.push(`/search/${encodedQuery}`);
+      navigate(`/search/${encodedQuery}`); // navigate used instead of history.push
     }
   };
 
