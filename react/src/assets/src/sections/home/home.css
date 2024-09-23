@@ -4,7 +4,7 @@
     right: 0;
 }
 .home-banner {
-    background: url('../../assets/images/shattered.png');
+    background: url('../../assets/assets/images/shattered.png');
 }
 .home-banner .inner {
     padding: 60px 0 0 0;
@@ -68,33 +68,62 @@
     height: 80px;
     float: left;
     background-color: #333;
-    margin: 0 20px 0 0;
-    text-align: center;
-    line-height: 80px;
-    font-size: 40px;
-    color: #CCC;
-}
-.tutorials li.offline .number {
-    background-color: #919191;
-    color: #666;
-}
-.share-buttons {
-    float: right;
-    width: 330px;
-    height: 50px;
-    margin-top: -10px;
-}
-.home-buttons {
-    text-align: center;
-    padding: 20px 0 40px 0;
-}
-.no-data.tuts {
-    line-height: 50px;
-    margin-bottom: 30px;
-}
-@media(max-width:992px) {
-    .home-banner .inner {
-        width: 100%;
-        padding: 20px;
-    }
-}
+    margin: 0 20px 0 0; 
+   text-align:center; 
+   line-height:
+   text-align:center; 
+   line-height:
+   text-align:center; 
+   line-height:
+   text-align:center; 
+   line-height:
+   text-align:center; 
+   line-height:
+   text-align:center; 
+   line-height:
+   text-align:center; 
+   line-height:
+   text-align:center; 
+   line-height:
+   text-align:center; 
+   line-height:
+80
+80
+80
+80
+80
+80
+80
+80
+80
+80
+80
+80
+80
+80
+80
+80
+80
+80
+80
+80
+font-size:
+font-size:
+font-size:
+font-size:
+font-size:
+font-size:
+font-size:
+font-size:
+font-size:
+font-size:
+font-size:
+font-size:
+font-size:
+font-size:
+40p40p40p40p40p40p40p40p40p40p40p40p40p40pcolor:#CCC;color:#CCC;color:#CCC;color:#CCC;color:#CCC;color:#CCC;color:#CCC;color:#CCC;color:#CCC;color:#CCC;color:#CCC;color:#CCC;color:#CCC;color:#CCC;}
+.tutorialsli.offline.number{background-color:#919191;color:#666;}
+.share-buttons{float:right;width330;height50;margin-top:-10;}
+.home-buttons{text-align:center;padding20;padding20;padding20;padding20;padding20;padding20;padding20;padding20;padding20;padding20;padding20;padding2040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404;}
+.no-data.tuts{line-height50;margin-bottom30;}
+@media(max-width992){.home-banner.inner{width100%;padding202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020}}
