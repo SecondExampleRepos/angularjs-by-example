@@ -1,4 +1,4 @@
-// Converted from src/assets/js/angular-truncate.js
+import { truncateWords } from '../../utils/filters/words';
 
 /**
  * Truncates a string to a specified number of words.

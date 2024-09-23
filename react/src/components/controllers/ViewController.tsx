@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import PageValues from '../../utils/constants/PageValues';
+import PageValues from '../../../utils/constants/PageValues';
 
 type ShowType = {
     id: number;
