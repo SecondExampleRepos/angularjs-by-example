@@ -34,7 +34,7 @@ const makeRequest = async (url: string, params: Record<string, any>) => {
     try {
         const response = await axios.get(`${requestUrl}&${queryString}`, {
             headers: { 'Content-Type': 'application/json' },
-            cache: true
+            // Removed cache as it is not a valid AxiosRequestConfig option
         });
         return response.data;
     } catch (error) {
