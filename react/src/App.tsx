@@ -9,6 +9,16 @@ import Popular from '../../components/controllers/popular';
 import View from '../../components/controllers/view';
 import ShowService from '../../services/showService';
 
+// CSS imports
+import '../../assets/src/sections/home/home.css';
+import '../../assets/src/sections/premieres/premieres.css';
+import '../../assets/src/sections/search/search.css';
+import '../../assets/src/sections/view/view.css';
+import '../../assets/src/components/show/show.css';
+import '../../assets/src/assets/css/animations.css';
+import '../../assets/src/assets/css/style.css';
+import '../../assets/src/assets/css/font-icons.css';
+
 function App() {
   return (
     <Router>
