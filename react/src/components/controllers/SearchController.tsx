@@ -1,9 +1,10 @@
 // Converted from src/sections/search/search.ctrl.js
 
 import React, { useState, useEffect } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom'; // useHistory replaced with useNavigate
 import axios from 'axios';
-import { BASE_URL, API_KEY } from '../../utils/constants';
+import BASE_URL from '../../utils/constants/BASE_URL'; // Import BASE_URL separately
+import API_KEY from '../../utils/constants/API_KEY'; // Import API_KEY separately
 
 interface Show {
   id: number;
@@ -15,7 +16,7 @@ const SearchController: React.FC = () => {
   const [query, setQuery] = useState<string | null>(null);
   const [shows, setShows] = useState<Show[]>([]);
   const [loading, setLoading] = useState<boolean | null>(null);
-  const history = useHistory();
+  const navigate = useNavigate(); // useHistory replaced with useNavigate
   const { query: routeQuery } = useParams<{ query: string }>();
 
   useEffect(() => {
@@ -28,7 +29,7 @@ const SearchController: React.FC = () => {
   const setSearch = () => {
     if (query) {
       const encodedQuery = encodeURI(query);
-      history.push(`/search/${encodedQuery}`);
+      navigate(`/search/${encodedQuery}`); // history.push replaced with navigate
     }
   };
 
