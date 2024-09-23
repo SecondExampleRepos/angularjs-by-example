@@ -64,41 +64,41 @@
     overflow: hidden;
     height: 20px;
     width: 300px;
-    transition: all .5s linear;
-    -o-transition: all .5s linear;
-    -moz-transition: all .5s linear;
-    -webkit-transition: all .5s linear;
+    transition: all .5s linear; 
+   -o-transition : all .5s linear; 
+   -moz-transition : all .5s linear; 
+   -webkit-transition : all .5s linear; 
 }
 
 .show-frame .genres li {
-    display: inline-block;
-    line-height: 20px;
-    margin: 0;
-    padding: 0 10px;
-    background-color: rgba(59, 185, 187, 1);
-    color: #FFF;
+   display : inline-block; 
+   line-height :20 px; 
+   margin :0 ; 
+   padding :0 px ; 
+   background-color : rgba (59 ,185 ,187 ,1 ); 
+   color :#FFF ; 
 }
 .show-frame .buttons {
-    text-align: center;
-    width: 100%;
-    padding-top: 10px;
+   text-align : center ; 
+   width :100 % ; 
+   padding-top :10 px ; 
 }
 .show-frame .buttons a {
-    width: 120px;
-    position: relative;
-    padding-left: 30px;
+   width :120 px ; 
+   position : relative ; 
+   padding-left :30 px ; 
 }
 .show-frame .buttons a .icon {
-    position: absolute;
-    left: 10px;
-    font-size: 16px;
-
+   position : absolute ; 
+   left :10 px ; 
+   font-size :16 px ;
+   
 }
 ul.list-of-shows {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+   list-style : none ; 
+   padding :0 ; 
+   margin :0 ;
 }
 ul.list-of-shows li {
-    margin: 15px 0;
+   margin :15 px ;
 }

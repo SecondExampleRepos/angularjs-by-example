@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import axios from 'axios';
-import PageValues from '../../utils/constants/PageValues';
+import PageValues from '../../../utils/constants/PageValues';
 
 type ShowType = {
     id: number;
@@ -39,7 +39,7 @@ const SearchController: React.FC = () => {
     useEffect(() => {
         PageValues.title = "SEARCH";
         PageValues.description = "Search for your favorite TV shows.";
-        
+
         if (query) {
             performSearch(query);
             setSearchQuery(decodeURIComponent(query));
@@ -57,7 +57,7 @@ const SearchController: React.FC = () => {
                 placeholder="Search for TV shows"
             />
             <button onClick={setSearch}>Search</button>
-            
+
             {loading ? (
                 <div>Loading...</div>
             ) : (
