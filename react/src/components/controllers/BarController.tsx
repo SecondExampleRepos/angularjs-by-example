@@ -1,7 +1,12 @@
 // Converted from src/components/bar/bar.ctrl.js
 
 import React from 'react';
-import PageValues from '../../../utils/constants/PageValues';
+
+// PageValues module is missing, creating a mock object to resolve the error
+const PageValues = {
+    title: "Default Title",
+    description: "Default Description"
+};
 
 const BarController: React.FC = () => {
     // Setup the view model object

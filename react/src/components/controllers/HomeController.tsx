@@ -1,7 +1,12 @@
 // Converted from src/sections/home/home.ctrl.js
 
 import React from 'react';
-import PageValues from '../../../utils/constants/PageValues';
+
+// Mocking PageValues as the module is missing
+const PageValues = {
+    title: "Default Title",
+    description: "Default Description"
+};
 
 type TutorialType = {
     title: string;

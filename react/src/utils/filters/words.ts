@@ -1,4 +1,4 @@
-import { truncateWords } from '../../utils/filters/words';
+// src/utils/filters/words.ts
 
 /**
  * Truncates a string to a specified number of words.
