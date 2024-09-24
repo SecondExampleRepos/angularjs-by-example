@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Show from '../directives/show';
-import PageValues from '../../services/page.val';
+import PageValues from '../../utils/constants/PageValues';
 
 interface Show {
   id: number;

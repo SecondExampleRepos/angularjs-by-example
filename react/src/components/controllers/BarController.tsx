@@ -3,7 +3,7 @@
 import React from 'react';
 
 // Assuming PageValues is a constant that needs to be imported
-import PageValues from '../../services/page.val';
+import PageValues from '../../utils/constants/PageValues';
 
 const BarController: React.FC = () => {
     // Setup the view model object
