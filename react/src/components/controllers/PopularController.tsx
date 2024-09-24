@@ -2,8 +2,8 @@
 
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import Show from '../../directives/show'; // Updated path based on directory structure
-import { PageValues } from '../../../utils/constants/PageValues'; // Updated path based on directory structure
+import Show from '../../components/directives/show'; // Corrected path based on directory structure
+import PageValues from '../../utils/constants/PageValues'; // Corrected path based on directory structure
 
 interface PopularControllerProps {
   shows: Array<any>;
