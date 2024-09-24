@@ -1,7 +1,7 @@
 // Converted from src/sections/popular/popular.ctrl.js
 
 import React, { useEffect, useState } from 'react';
-import ShowService from '../../services/show.fct';
+import ShowService from '../../services/ShowService';
 
 interface PopularControllerProps {
   shows: Array<any>;

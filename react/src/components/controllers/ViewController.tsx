@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import ShowService from '../../services/show.fct';
+import ShowService from '../../services/ShowService';
 
 interface Show {
   id: number;

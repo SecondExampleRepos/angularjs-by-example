@@ -1,5 +1,3 @@
-// Converted from src/assets/js/angular-truncate.js
-
 /**
  * Truncates a string to a specified number of words.
  * @param input - The input string to be truncated.
