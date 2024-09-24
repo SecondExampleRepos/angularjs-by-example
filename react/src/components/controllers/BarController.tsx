@@ -3,7 +3,7 @@
 import React from 'react';
 
 // Assuming PageValues is a constant or a service that needs to be imported
-// import PageValues from '../../utils/constants/PageValues';
+import PageValues from '../../utils/constants/PageValues';
 
 interface BarControllerProps {
     PageValues: any; // Replace 'any' with the actual type of PageValues if known

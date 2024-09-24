@@ -1,6 +1,7 @@
 // Converted from src/sections/premieres/premieres.ctrl.js
 
 import React from 'react';
+import Show from '../directives/show'; // Updated import path for Show component
 
 interface PremieresControllerProps {
   shows: Array<any>;

@@ -1,7 +1,7 @@
 // Converted from src/components/show/show.drct.js
 
 import React, { useEffect, useState } from 'react';
-import ShowService from '../../services/show.fct';
+import ShowService from '../../services/ShowService';
 
 interface ShowProps {
   show: {
