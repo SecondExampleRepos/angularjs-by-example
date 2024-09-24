@@ -17,8 +17,8 @@ const makeRequest = async (url: string, params: Record<string, any>) => {
         const response = await axios.get(fullUrl, {
             headers: {
                 'Content-Type': 'application/json'
-            },
-            cache: true
+            }
+            // Removed 'cache' as it is not a valid AxiosRequestConfig option
         });
         return response.data;
     } catch (error) {
