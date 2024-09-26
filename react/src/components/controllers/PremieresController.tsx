@@ -1,7 +1,8 @@
 // Converted from src/sections/premieres/premieres.ctrl.js
 
 import React, { useState, useEffect } from 'react';
-import Show from '../../directives/show';
+// Corrected import path based on context provided
+import ShowComponent from '../../components/ShowComponent';
 
 interface Show {
   id: number;
@@ -12,8 +13,8 @@ interface PremieresControllerProps {
 }
 
 const PremieresController: React.FC<PremieresControllerProps> = ({ shows }) => {
-  const [pageTitle, setPageTitle] = useState<string>("PREMIERES");
-  const [pageDescription, setPageDescription] = useState<string>("Brand new shows showing this month.");
+  const [pageTitle] = useState<string>("PREMIERES");
+  const [pageDescription] = useState<string>("Brand new shows showing this month.");
 
   useEffect(() => {
     // This effect could be used to update document title or other side effects
@@ -26,7 +27,7 @@ const PremieresController: React.FC<PremieresControllerProps> = ({ shows }) => {
       <p>{pageDescription}</p>
       <div>
         {shows.map((show) => (
-          <Show key={show.id} show={show} />
+          <ShowComponent key={show.id} show={show} />
         ))}
       </div>
     </div>

@@ -1,7 +1,6 @@
 // Converted from src/sections/popular/popular.ctrl.js
 
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
 
 interface Show {
   id: number;
@@ -13,8 +12,8 @@ interface PopularControllerProps {
 }
 
 const PopularController: React.FC<PopularControllerProps> = ({ shows }) => {
-  const [pageTitle, setPageTitle] = useState<string>("POPULAR");
-  const [pageDescription, setPageDescription] = useState<string>("The most popular TV shows.");
+  const [pageTitle] = React.useState<string>("POPULAR");
+  const [pageDescription] = React.useState<string>("The most popular TV shows.");
 
   useEffect(() => {
     document.title = pageTitle;

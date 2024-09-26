@@ -1,6 +1,6 @@
 // Converted from src/app.routes.js
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Home from './components/controllers/HomeController';
 import Premieres from './components/controllers/PremieresController';
@@ -20,26 +20,72 @@ import './assets/src/sections/search/search.css';
 import './assets/src/sections/view/view.css';
 
 function App() {
+  const [premieresShows, setPremieresShows] = useState([]);
+  const [popularShows, setPopularShows] = useState([]);
+  const [viewShow, setViewShow] = useState(null);
+  const showService = ShowService(); // Ensure ShowService is instantiated correctly
+
+  useEffect(() => {
+    const fetchPremieres = async () => {
+      const shows = await showService.getPremieres();
+      setPremieresShows(shows);
+    };
+
+    const fetchPopular = async () => {
+      const shows = await showService.getPopular();
+      setPopularShows(shows);
+    };
+
+    const fetchViewShow = async (id: number) => {
+      const show = await showService.get(id);
+      setViewShow(show);
+    };
+
+    fetchPremieres();
+    fetchPopular();
+
+    const pathParts = window.location.pathname.split('/');
+    if (pathParts[1] === 'view' && pathParts[2]) {
+      fetchViewShow(Number(pathParts[2]));
+    }
+  }, [showService]);
+
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
           path="/premieres"
-          element={<Premieres shows={ShowService.getPremieres()} />}
+          element={
+            <Premieres
+              shows={premieresShows}
+            />
+          }
         />
         <Route path="/search" element={<Search />} />
         <Route
           path="/search/:query"
-          element={<Search query={window.location.pathname.split('/').pop()} />}
+          element={
+            <Search
+              query={window.location.pathname.split('/').pop() || ''}
+            />
+          }
         />
         <Route
           path="/popular"
-          element={<Popular shows={ShowService.getPopular()} />}
+          element={
+            <Popular
+              shows={popularShows}
+            />
+          }
         />
         <Route
           path="/view/:id"
-          element={<View show={ShowService.get(window.location.pathname.split('/').pop())} />}
+          element={
+            <View
+              show={viewShow}
+            />
+          }
         />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

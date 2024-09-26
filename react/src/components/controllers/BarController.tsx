@@ -7,7 +7,7 @@ import PageValues from '../../utils/constants/PageValues';
 
 const BarController: React.FC = () => {
     // Setup the view model object
-    const [data, setData] = React.useState(PageValues);
+    const [data] = React.useState(PageValues); // Removed 'setData' since it is not used
 
     return (
         <div>

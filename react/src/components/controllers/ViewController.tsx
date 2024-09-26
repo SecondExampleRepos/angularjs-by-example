@@ -1,13 +1,13 @@
 // Converted from src/sections/view/view.ctrl.js
 
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+// Removed unused import 'useLocation'
 import axios from 'axios';
 
 interface Show {
   id: number;
   original_name: string;
-  cast: Array<any>;
+  cast: Array<{ name: string }>; // Specify the type of cast members
 }
 
 interface ViewControllerProps {
@@ -15,12 +15,11 @@ interface ViewControllerProps {
 }
 
 const ViewController: React.FC<ViewControllerProps> = ({ show }) => {
-  const [cast, setCast] = useState<Array<any>>([]);
-  const location = useLocation();
+  const [cast, setCast] = useState<Array<{ name: string }>>([]); // Specify the type of cast members
 
   useEffect(() => {
     document.title = "VIEW";
-    const description = `Overview, seasons & info for '${show.original_name}'.`;
+    // const description = `Overview, seasons & info for '${show.original_name}'.`; // Removed unused variable
     // Assuming there's a way to set meta description in your app
     // setMetaDescription(description);
 

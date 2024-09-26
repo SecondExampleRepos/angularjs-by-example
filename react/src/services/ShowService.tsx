@@ -2,9 +2,8 @@
 
 import axios from 'axios';
 import moment from 'moment';
-
-const API_KEY = '87de9079e74c828116acce677f6f255b';
-const BASE_URL = 'http://api.themoviedb.org/3';
+import API_KEY from '../utils/constants/API_KEY';
+import BASE_URL from '../utils/constants/BASE_URL';
 
 const ShowService = () => {
   const makeRequest = async (url: string, params: Record<string, string>) => {
@@ -18,7 +17,7 @@ const ShowService = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        cache: true,
+        // Removed 'cache' as it is not a valid AxiosRequestConfig option
       });
       return response.data;
     } catch (error) {
@@ -30,7 +29,7 @@ const ShowService = () => {
   const getPremieres = async () => {
     const date = new Date();
     date.setDate(1);
-    const formattedDate = moment(date).format('DD-MM-YYYY');
+    const formattedDate = moment(date).format('YYYY-MM-DD'); // Corrected date format to match API requirements
     const data = await makeRequest('discover/tv', {
       'first_air_date.gte': formattedDate,
       append_to_response: 'genres',
