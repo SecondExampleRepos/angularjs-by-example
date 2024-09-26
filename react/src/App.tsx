@@ -2,22 +2,22 @@
 
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import Home from '../../components/controllers/Home';
-import Premieres from '../../components/controllers/Premieres';
-import Search from '../../components/controllers/Search';
-import Popular from '../../components/controllers/Popular';
-import View from '../../components/controllers/View';
-import ShowService from '../../services/showService';
+import Home from './components/controllers/HomeController';
+import Premieres from './components/controllers/PremieresController';
+import Search from './components/controllers/SearchController';
+import Popular from './components/controllers/PopularController';
+import View from './components/controllers/ViewController';
+import ShowService from './services/ShowService';
 
 // CSS imports
-import '../../assets/src/assets/css/font-icons.css';
-import '../../assets/src/assets/css/animations.css';
-import '../../assets/src/assets/css/style.css';
-import '../../assets/src/components/show/show.css';
-import '../../assets/src/sections/home/home.css';
-import '../../assets/src/sections/premieres/premieres.css';
-import '../../assets/src/sections/search/search.css';
-import '../../assets/src/sections/view/view.css';
+import './assets/src/assets/css/font-icons.css';
+import './assets/src/assets/css/animations.css';
+import './assets/src/assets/css/style.css';
+import './assets/src/components/show/show.css';
+import './assets/src/sections/home/home.css';
+import './assets/src/sections/premieres/premieres.css';
+import './assets/src/sections/search/search.css';
+import './assets/src/sections/view/view.css';
 
 function App() {
   return (

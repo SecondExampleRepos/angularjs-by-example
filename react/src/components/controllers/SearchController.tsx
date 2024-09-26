@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
-import ShowService from '../../services/show.fct';
+import ShowService from '../../services/ShowService';
 
 const SearchController: React.FC = () => {
     const [query, setQuery] = useState<string | null>(null);

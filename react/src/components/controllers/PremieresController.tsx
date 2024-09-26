@@ -1,7 +1,7 @@
 // Converted from src/sections/premieres/premieres.ctrl.js
 
 import React, { useState, useEffect } from 'react';
-import Show from '../directives/show';
+import Show from '../../directives/show';
 
 interface Show {
   id: number;
