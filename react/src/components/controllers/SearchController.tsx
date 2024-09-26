@@ -1,7 +1,7 @@
 // Converted from src/sections/search/search.ctrl.js
 
 import React, { useState, useEffect } from 'react';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom'; // Updated import
 import ShowService from '../../services/ShowService';
 
 const SearchController: React.FC = () => {
@@ -9,7 +9,7 @@ const SearchController: React.FC = () => {
     const [shows, setShows] = useState<any[]>([]);
     const [loading, setLoading] = useState<boolean | null>(null);
     const location = useLocation();
-    const history = useHistory();
+    const navigate = useNavigate(); // Updated hook
 
     useEffect(() => {
         const searchParams = new URLSearchParams(location.search);
@@ -23,15 +23,17 @@ const SearchController: React.FC = () => {
     const setSearch = () => {
         if (query) {
             const encodedQuery = encodeURI(query);
-            history.push(`/search?query=${encodedQuery}`);
+            navigate(`/search?query=${encodedQuery}`); // Updated navigation
         }
     };
 
     const performSearch = (query: string) => {
         setLoading(true);
-        ShowService.search(query).then((response) => {
+        ShowService().search(query).then((response) => {
             setShows(response);
             setLoading(false);
+        }).catch(() => {
+            setLoading(false); // Ensure loading is set to false on error
         });
     };
 

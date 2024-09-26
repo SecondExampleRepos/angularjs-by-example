@@ -2,12 +2,11 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
 
 interface Show {
   id: number;
   original_name: string;
-  cast: Array<any>;
+  cast: Array<{ name: string }>; // Specify the type of cast members
 }
 
 interface ViewControllerProps {
@@ -15,8 +14,7 @@ interface ViewControllerProps {
 }
 
 const ViewController: React.FC<ViewControllerProps> = ({ show }) => {
-  const [cast, setCast] = useState<Array<any>>([]);
-  const location = useLocation();
+  const [cast, setCast] = useState<Array<{ name: string }>>([]); // Specify the type of cast members
 
   useEffect(() => {
     const fetchCast = async () => {

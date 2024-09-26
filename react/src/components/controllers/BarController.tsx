@@ -6,18 +6,16 @@ import React from 'react';
 import PageValues from '../../utils/constants/PageValues';
 
 interface BarControllerProps {
-    PageValues: any; // Replace 'any' with the actual type of PageValues if known
+    PageValues: typeof PageValues; // Replace 'any' with the actual type of PageValues if known
 }
 
 const BarController: React.FC<BarControllerProps> = ({ PageValues }) => {
     // Setup the view model object
-    const vm = {
-        data: PageValues
-    };
-
+    // 'vm' is not used, so we can directly use 'PageValues' in the render logic
     return (
         <div>
-            {/* Render logic for vm.data can be added here */}
+            {/* Render logic for PageValues can be added here */}
+            {JSON.stringify(PageValues)} {/* Example rendering of PageValues */}
         </div>
     );
 };
