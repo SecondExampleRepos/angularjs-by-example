@@ -3,7 +3,7 @@
 import React from 'react';
 
 // Assuming PageValues is imported from a relevant file
-// import PageValues from 'path-to-page-values';
+import PageValues from '../../utils/constants/PageValues';
 
 interface BarControllerProps {
     PageValues: any; // Define the type of PageValues if known
