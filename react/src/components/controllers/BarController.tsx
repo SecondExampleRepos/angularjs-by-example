@@ -9,7 +9,7 @@ interface BarControllerProps {
     PageValues: any; // Define the type of PageValues if known
 }
 
-const BarController: React.FC<BarControllerProps> = ({ PageValues }) => {
+const BarController: React.FC = () => {
     // Setup the view model object
     const vm = {
         data: PageValues

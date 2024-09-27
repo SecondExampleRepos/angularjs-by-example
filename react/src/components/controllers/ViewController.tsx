@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
 
 interface Show {
   id: number;
@@ -16,7 +15,6 @@ interface ViewControllerProps {
 
 const ViewController: React.FC<ViewControllerProps> = ({ show }) => {
   const [cast, setCast] = useState<Array<any>>([]);
-  const location = useLocation();
 
   useEffect(() => {
     const fetchCast = async () => {

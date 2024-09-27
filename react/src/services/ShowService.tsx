@@ -6,7 +6,7 @@ import moment from 'moment';
 const API_KEY = '87de9079e74c828116acce677f6f255b';
 const BASE_URL = 'http://api.themoviedb.org/3';
 
-interface ShowService {
+interface IShowService {
   getPremieres: () => Promise<any>;
   get: (id: number) => Promise<any>;
   search: (query: string) => Promise<any>;
@@ -14,11 +14,11 @@ interface ShowService {
   getCast: (id: number) => Promise<any>;
 }
 
-const ShowService: ShowService = {
+const ShowService: IShowService = {
   getPremieres: async () => {
     const date = new Date();
     date.setDate(1);
-    const formattedDate = moment(date).format('DD-MM-YYYY');
+    const formattedDate = moment(date).format('YYYY-MM-DD'); // Corrected date format to match API requirements
     const response = await makeRequest('discover/tv', {
       'first_air_date.gte': formattedDate,
       append_to_response: 'genres',
@@ -48,7 +48,7 @@ const ShowService: ShowService = {
 async function makeRequest(url: string, params: Record<string, any>) {
   const requestUrl = `${BASE_URL}/${url}?api_key=${API_KEY}`;
   const queryString = Object.entries(params)
-    .map(([key, value]) => `${key}=${value}`)
+    .map(([key, value]) => `${key}=${encodeURIComponent(value)}`) // Ensure query parameters are URL encoded
     .join('&');
   const fullUrl = `${requestUrl}&${queryString}`;
 

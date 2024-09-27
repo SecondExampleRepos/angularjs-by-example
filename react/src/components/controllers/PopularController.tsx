@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 
 interface Show {
   id: number;
+  name: string; // Added relevant field
   // Add other relevant fields as needed
 }
 
@@ -21,7 +22,7 @@ const PopularController: React.FC<PopularControllerProps> = ({ shows }) => {
       <p>{pageDescription}</p>
       <ul>
         {shows.map((show) => (
-          <li key={show.id}>{show.id}</li> {/* Replace with relevant show details */}
+          <li key={show.id}>{show.name}</li> {/* Displaying show name instead of id */}
         ))}
       </ul>
     </div>
