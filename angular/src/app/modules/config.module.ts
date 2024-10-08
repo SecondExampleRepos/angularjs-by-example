@@ -2,12 +2,12 @@
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from '../components/home/home.component';
-import { PremieresComponent } from '../components/premieres/premieres.component';
-import { SearchComponent } from '../components/search/search.component';
-import { PopularComponent } from '../components/popular/popular.component';
-import { ViewComponent } from '../components/view/view.component';
-import { ShowService } from '../services/show.service';
+import { HomeComponent } from '../components/HomeController/HomeController.component';
+import { PremieresComponent } from '../components/PremieresController/PremieresController.component';
+import { SearchComponent } from '../components/SearchController/SearchController.component';
+import { PopularComponent } from '../components/PopularController/PopularController.component';
+import { ViewComponent } from '../components/ViewController/ViewController.component';
+import { ShowService } from '../services/ShowService.service';
 
 const routes: Routes = [
   {
