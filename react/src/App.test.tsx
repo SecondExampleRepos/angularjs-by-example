@@ -1,4 +1,4 @@
-import React from 'react';
+// /var/folders/tp/_k968y_x13z2b_bhm39165fm0000gn/T/second-repos/jobs/job_7400/react/src/App.test.tsx
 import { render, screen } from '@testing-library/react';
 import App from './App';
 

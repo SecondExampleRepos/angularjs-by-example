@@ -1,7 +1,7 @@
 // Converted from src/sections/premieres/premieres.ctrl.js
 
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import ShowService from '../../services/ShowService';
 
 interface Show {
   id: number;
@@ -12,43 +12,17 @@ interface Show {
   first_air_date: string;
 }
 
-interface PageValues {
-  title: string | null;
-  description: string | null;
-  loading: boolean;
-}
-
-const PageValues: PageValues = {
-  title: null,
-  description: null,
-  loading: false,
-};
-
-const API_KEY = '87de9079e74c828116acce677f6f255b';
-const BASE_URL = 'http://api.themoviedb.org/3';
-
-const getPremieres = async (): Promise<Show[]> => {
-  const date = new Date();
-  date.setDate(1);
-  const response = await axios.get(`${BASE_URL}/discover/tv`, {
-    params: {
-      api_key: API_KEY,
-      'first_air_date.gte': date.toISOString().split('T')[0],
-      append_to_response: 'genres',
-    },
-  });
-  return response.data.results;
+const PageValues = {
+  title: 'PREMIERES',
+  description: 'Brand new shows showing this month.'
 };
 
 const PremieresController: React.FC = () => {
   const [shows, setShows] = useState<Show[]>([]);
 
   useEffect(() => {
-    PageValues.title = 'PREMIERES';
-    PageValues.description = 'Brand new shows showing this month.';
-
     const fetchShows = async () => {
-      const premieres = await getPremieres();
+      const premieres = await ShowService.getPremieres();
       setShows(premieres);
     };
 

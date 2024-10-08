@@ -1,7 +1,6 @@
 // Converted from src/sections/view/view.ctrl.js
 
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import ShowService from '../../services/ShowService';
 import { characters } from '../../utils/filters/characters';
@@ -21,7 +20,7 @@ interface PageValues {
   description: string | null;
 }
 
-const PageValues: PageValues = {
+const pageValues: PageValues = {
   title: null,
   description: null,
 };
@@ -40,11 +39,11 @@ const ViewController: React.FC = () => {
       }
     };
 
-    PageValues.title = 'VIEW';
-    PageValues.description = `Overview, seasons & info for '${show?.original_name}'.`;
+    pageValues.title = 'VIEW';
+    pageValues.description = `Overview, seasons & info for '${show?.original_name}'.`;
 
     fetchShow();
-  }, [location]);
+  }, [location, show?.original_name]);
 
   const setBannerImage = () => ({
     background: 'url() no-repeat',
@@ -54,8 +53,8 @@ const ViewController: React.FC = () => {
 
   return (
     <div>
-      <h1>{PageValues.title}</h1>
-      <p>{PageValues.description}</p>
+      <h1>{pageValues.title}</h1>
+      <p>{pageValues.description}</p>
       {show && (
         <div style={setBannerImage()}>
           <h2>{characters(show.original_name, 40, true)}</h2>

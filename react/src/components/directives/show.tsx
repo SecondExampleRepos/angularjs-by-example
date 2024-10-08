@@ -1,7 +1,6 @@
 // Converted from src/components/show/show.drct.js
 
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import ShowService from '../../services/ShowService';
 import { characters } from '../../utils/filters/characters';
 
@@ -18,6 +17,10 @@ interface Genre {
   name: string;
 }
 
+interface ShowResponse {
+  genres: Genre[];
+}
+
 interface ShowProps {
   show: Show;
 }
@@ -28,27 +31,48 @@ const ShowComponent: React.FC<ShowProps> = ({ show }) => {
   useEffect(() => {
     const fetchGenres = async () => {
       const response = await ShowService.get(show.id);
-      setGenres(response.genres);
+      if (response && 'genres' in response) {
+        setGenres(response.genres);
+      }
     };
 
     fetchGenres();
   }, [show.id]);
 
+  const renderList = (items: string[], className: string, iconClass: string, fallback: string) => (
+    <li className={className}>
+      <span className={iconClass}></span>{' '}
+      {items.length > 0 ? items.join(', ') : <span>{fallback}</span>}
+    </li>
+  );
+
+  const renderGenres = () => (
+    <ul className="genres">
+      {genres.map((genre, index) => (
+        <li
+          key={index}
+          className="animate-repeat"
+          style={{
+            backgroundColor: `rgba(59, 185, 187, ${genres.length / (index + 1) / 5})`,
+          }}
+        >
+          {genre.name}
+        </li>
+      ))}
+    </ul>
+  );
+
+  const renderInfo = () => (
+    <ul className="info">
+      {renderList([show.vote_average.toString()], "col-xs-6 rating", "icon icon-heart3", "--")}
+      {renderList(show.origin_country, "col-xs-6 country", "icon icon-earth", "--")}
+      <div className="clearfix"></div>
+    </ul>
+  );
+
   return (
     <div className="show-frame">
-      <ul className="genres">
-        {genres.map((genre, index) => (
-          <li
-            key={index}
-            className="animate-repeat"
-            style={{
-              backgroundColor: `rgba(59, 185, 187, ${genres.length / (index + 1) / 5})`,
-            }}
-          >
-            {genre.name}
-          </li>
-        ))}
-      </ul>
+      {renderGenres()}
       <img
         src={`http://image.tmdb.org/t/p/w780/${show.backdrop_path}`}
         alt={show.original_name}
@@ -61,20 +85,7 @@ const ShowComponent: React.FC<ShowProps> = ({ show }) => {
       </div>
       <h2>{characters(show.original_name, 40, true)}</h2>
       <div className="inner">
-        <ul className="info">
-          <li className="col-xs-6 rating">
-            <span className="icon icon-heart3"></span> {show.vote_average}
-          </li>
-          <li className="col-xs-6 country">
-            <span className="icon icon-earth"></span>{' '}
-            {show.origin_country.length > 0 ? (
-              show.origin_country.join(', ')
-            ) : (
-              <span>--</span>
-            )}
-          </li>
-          <div className="clearfix"></div>
-        </ul>
+        {renderInfo()}
         <div className="buttons">
           <a href={`#/view/${show.id}`} className="btn btn-info">
             <span className="icon icon-arrow-right7"></span> View

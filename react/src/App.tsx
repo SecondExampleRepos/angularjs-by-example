@@ -1,4 +1,4 @@
-import React from 'react';
+// /var/folders/tp/_k968y_x13z2b_bhm39165fm0000gn/T/second-repos/jobs/job_7400/react/src/App.tsx
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import HomeController from './components/controllers/HomeController';
 import PremieresController from './components/controllers/PremieresController';
@@ -15,8 +15,6 @@ import './assets/src/components/show/show.css';
 import './assets/src/assets/css/animations.css';
 import './assets/src/assets/css/style.css';
 import './assets/src/assets/css/font-icons.css';
-
-// Converted from src/app.routes.js
 
 function App() {
   return (

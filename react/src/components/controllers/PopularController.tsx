@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import ShowService from '../../services/ShowService';
+import PageValues from '../../utils/constants/PageValues';
 
 interface Show {
   id: number;
@@ -12,28 +13,21 @@ interface Show {
   first_air_date: string;
 }
 
-interface PageValues {
-  title: string | null;
-  description: string | null;
-}
-
-const PageValues: PageValues = {
-  title: null,
-  description: null,
-};
-
 const PopularController: React.FC = () => {
   const [shows, setShows] = useState<Show[]>([]);
 
   useEffect(() => {
-    PageValues.title = "POPULAR";
-    PageValues.description = "The most popular TV shows.";
+    const updatePageValues = () => {
+      PageValues.title = "POPULAR";
+      PageValues.description = "The most popular TV shows.";
+    };
 
     const fetchPopularShows = async () => {
       const popularShows = await ShowService.getPopular();
       setShows(popularShows);
     };
 
+    updatePageValues();
     fetchPopularShows();
   }, []);
 
