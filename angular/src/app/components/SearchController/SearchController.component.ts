@@ -1,0 +1,18 @@
+/* Converted from src/sections/search/search.css */
+
+.search-top {
+  padding: 20px 0;
+}
+.search-results .throbber {
+  margin-top: 50px;
+}
+.search-results .no-data {
+  font-size: 18px;
+}
+.search-btn {
+  height: 46px;
+}
+.search-btn:hover {
+  height: 46px;
+  margin-top: 0;
+}
