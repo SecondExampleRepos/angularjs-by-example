@@ -53,7 +53,7 @@ const ShowComponent: React.FC<ShowProps> = ({ show }) => {
         src={`http://image.tmdb.org/t/p/w780/${show.backdrop_path}`}
         alt={show.original_name}
         onError={(e) => {
-          e.currentTarget.src = 'assets/images/fallback.jpg';
+          e.currentTarget.src = '/assets/images/fallback.jpg';
         }}
       />
       <div className="date label label-dark">

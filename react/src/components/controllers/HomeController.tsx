@@ -46,7 +46,7 @@ const HomeController: React.FC = () => {
     <div className="home-frame">
       <div className="home-banner">
         <div className="container inner">
-          <img className="hidden-sm hidden-xs" src="assets/images/angular.png" width="400" height="400" alt="AngularJS" />
+          <img className="hidden-sm hidden-xs" src="/assets/images/angular.png" width="400" height="400" alt="AngularJS" />
           <h1>LEARN ANGULARJS <span>THE EASY WAY</span>.</h1>
           <h2>Learn how to build superb AngularJS web applications using real world best practice examples coupled with in-depth tutorials from <a href="#">revillweb.com</a>.</h2>
           <p>This website is a living and breathing AngularJS web application built using recommended best practices. <strong>AngularJS by example</strong> provides you with a complete application demonstrating recommended best practices from app structure all the way through to production deployment.</p>
