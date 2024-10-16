@@ -1,7 +1,7 @@
 // Converted from src/components/show/show.drct.js
 
 import { Directive, Input, OnInit } from '@angular/core';
-import { ShowService } from '../services/show.service';
+import { ShowService } from '../services/ShowService.service';
 
 @Directive({
   selector: 'app-show',
