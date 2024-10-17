@@ -1,0 +1,9 @@
+<!-- Converted from src/sections/premieres/premieres.tpl.html -->
+<div class="premieres-results">
+    <div class="no-data" *ngIf="premieres.shows.length === 0">There are no premieres available to display</div>
+    <ul class="list-of-shows">
+        <li class="col-xs-6 col-md-4" *ngFor="let show of premieres.shows">
+            <app-show [show]="show"></app-show>
+        </li>
+    </ul>
+</div>
