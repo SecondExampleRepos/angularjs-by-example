@@ -1,3 +1,4 @@
+// Converted from angular/src/index.html
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,8 +7,62 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/font-icons.css" type='text/css'>
+  <link rel="stylesheet" href="assets/css/animations.css"/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <link rel="stylesheet" href="sections/home/home.css"/>
+  <link rel="stylesheet" href="components/show/show.css"/>
+  <link rel="stylesheet" href="sections/view/view.css"/>
+  <link rel="stylesheet" href="sections/search/search.css"/>
+  <link rel="stylesheet" href="sections/premieres/premieres.css"/>
+  <script type="text/javascript">
+    //<![CDATA[
+    (function() {
+        var shr = document.createElement('script');
+        shr.setAttribute('data-cfasync', 'false');
+        shr.src = '//dsms0mj1bbhn4.cloudfront.net/assets/pub/shareaholic.js';
+        shr.type = 'text/javascript'; shr.async = 'true';
+        shr.onload = shr.onreadystatechange = function() {
+            var rs = this.readyState;
+            if (rs && rs != 'complete' && rs != 'loaded') return;
+            var site_id = 'eafbfda40f862712debe1bc8fcb68c8f';
+            try { Shareaholic.init(site_id); } catch (e) {}
+        };
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(shr, s);
+    })();
+    //]]>
+  </script>
 </head>
 <body>
   <app-root></app-root>
+
+  <header id="site-header">
+    <div class="container">
+      <div class="pull-left logo">ANGULAR <span class="alt">BY</span> EXAMPLE</div>
+      <ul class="pull-right menu">
+        <li><a routerLink="/">HOME</a></li>
+        <li><a routerLink="/premieres">PREMIERES</a></li>
+        <li><a routerLink="/popular">POPULAR</a></li>
+        <li><a routerLink="/search">SEARCH</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section id="site-bar">
+    <div class="container">
+      <h1>{{ 'PREMIERES' }}</h1>
+      <p>{{ 'Brand new shows showing this month.' }}</p>
+    </div>
+    <div class="page-loader" *ngIf="loading"><div class="throbber"></div></div>
+  </section>
+
+  <section id="main">
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </section>
 </body>
 </html>
