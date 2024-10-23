@@ -2,7 +2,6 @@
 
 import { NgModule } from '@angular/core';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { PageValues } from '../constants/PageValues';
 
 @NgModule({
