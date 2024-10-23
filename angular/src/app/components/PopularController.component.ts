@@ -1,8 +1,8 @@
 // Converted from src/sections/popular/popular.ctrl.js
 
 import { Component, Input, OnInit } from '@angular/core';
-import { PageValues } from '../../services/page.val';
-import { ShowService } from '../../services/show.service';
+import { PageValues } from '../constants/PageValues';
+import { ShowService } from '../services/ShowService.service';
 
 @Component({
   selector: 'app-popular-controller',

@@ -2,8 +2,8 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ShowService } from '../../services/show.service';
-import { PageValues } from '../../services/page.val';
+import { ShowService } from '../services/ShowService.service';
+import { PageValues } from '../constants/PageValues';
 
 @Component({
   selector: 'app-search-controller',

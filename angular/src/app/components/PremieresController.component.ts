@@ -1,8 +1,8 @@
 // Converted from src/sections/premieres/premieres.ctrl.js
 
 import { Component, Input } from '@angular/core';
-import { PageValuesService } from '../services/page-values.service';
-import { ShowService } from '../services/show.service';
+import { PageValuesService } from '../constants/PageValues';
+import { ShowService } from '../services/ShowService.service';
 
 @Component({
   selector: 'app-premieres-controller',

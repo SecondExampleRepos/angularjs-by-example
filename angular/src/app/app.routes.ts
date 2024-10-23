@@ -1,12 +1,12 @@
 // Converted from angular/src/app/modules/config.routing.module.ts
 
 import { Routes } from '@angular/router';
-import { HomeComponent } from '../components/home/home.component';
-import { PremieresControllerComponent } from '../components/premieres-controller.component';
-import { SearchComponent } from '../components/search/search.component';
-import { PopularComponent } from '../components/popular/popular.component';
-import { ViewComponent } from '../components/view/view.component';
-import { ShowService } from '../services/show.service';
+import { HomeComponent } from './components/home/HomeController.component';
+import { PremieresControllerComponent } from './components/PremieresController.component';
+import { SearchComponent } from './components/search/SearchController.component';
+import { PopularComponent } from './components/popular/PopularController.component';
+import { ViewComponent } from './components/ViewController.component';
+import { ShowService } from './services/ShowService.service';
 
 export const routes: Routes = [
   {

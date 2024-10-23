@@ -1,8 +1,8 @@
-@import 'angular/src/assets/src/sections/home/home.css';
-@import 'angular/src/assets/src/sections/premieres/premieres.css';
-@import 'angular/src/assets/src/sections/search/search.css';
-@import 'angular/src/assets/src/sections/view/view.css';
-@import 'angular/src/assets/src/components/show/show.css';
-@import 'angular/src/assets/src/assets/css/font-icons.css';
-@import 'angular/src/assets/src/assets/css/animations.css';
-@import 'angular/src/assets/src/assets/css/style.css';
+@import 'src/assets/src/sections/home/home';
+@import 'src/assets/src/sections/premieres/premieres';
+@import 'src/assets/src/sections/search/search';
+@import 'src/assets/src/sections/view/view';
+@import 'src/assets/src/components/show/show';
+@import 'src/assets/src/assets/css/font-icons.css';
+@import 'src/assets/src/assets/css/animations.css';
+@import 'src/assets/src/assets/css/style.css';
