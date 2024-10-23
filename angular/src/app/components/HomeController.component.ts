@@ -1,7 +1,7 @@
 // Converted from src/sections/home/home.ctrl.js
 
 import { Component, OnInit } from '@angular/core';
-import { PageValues } from '../../constants/PageValues';
+import { PageValues } from '../constants/PageValues';
 
 @Component({
   selector: 'app-home-controller',

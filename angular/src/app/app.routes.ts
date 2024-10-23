@@ -1,12 +1,12 @@
 // Converted from angular/src/app/modules/config.routing.module.ts
 
 import { Routes } from '@angular/router';
-import { HomeComponent } from '../components/home.component';
-import { PremieresControllerComponent } from '../components/premieres-controller.component';
-import { SearchComponent } from '../components/search.component';
-import { PopularComponent } from '../components/popular.component';
-import { ViewComponent } from '../components/view.component';
-import { ShowService } from '../services/show.service';
+import { HomeComponent } from './components/HomeController.component';
+import { PremieresControllerComponent } from './components/PremieresController.component';
+import { SearchComponent } from './components/SearchController.component';
+import { PopularComponent } from './components/PopularController.component';
+import { ViewComponent } from './components/ViewController.component';
+import { ShowService } from './services/ShowService.service';
 import { ActivatedRouteSnapshot } from '@angular/router';
 
 export const routes: Routes = [
