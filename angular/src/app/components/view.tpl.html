@@ -1,0 +1,51 @@
+<!-- Converted from src/sections/view/view.tpl.html -->
+<div class="view-banner" [style.backgroundImage]="'url(http://image.tmdb.org/t/p/original/' + show.backdrop_path + ')'" [style.backgroundSize]="'cover'" [style.backgroundPosition]="'center'" [style.height]="'500px'" [style.position]="'absolute'" [style.top]="'100px'" [style.left]="'0'" [style.right]="'0'" [style.zIndex]="'1'"></div>
+<div class="view-title">
+    <div class="container">
+        {{ show.original_name }} ({{ show.first_air_date | date:'yyyy' }})
+        <ul class="pull-right">
+            <li><span class="icon icon-heart3"></span> {{ show.vote_average }}</li>
+            <li><span class="icon icon-tags"></span> <span *ngFor="let genre of show.genres; let last = last">{{ genre.name }}<span *ngIf="!last">, </span></span></li>
+            <li><span class="icon icon-info2"></span> {{ show.status }}</li>
+        </ul>
+    </div>
+</div>
+<div class="view-container">
+    <h2>Show Summary</h2>
+    <div class="view-section view-top" *ngIf="show.overview">
+        <div class="poster"><img [src]="'http://image.tmdb.org/t/p/w342/' + show.poster_path" alt="Poster" /></div>
+        <p>{{ show.overview }}</p>
+        <div class="buttons">
+            <a [href]="show.homepage" target="_blank" class="btn btn-lg btn-info"><span class="icon icon-home"></span> Homepage</a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div *ngIf="!show.overview" class="no-overview">No overview is available for this show</div>
+    <h2>Seasons</h2>
+    <div class="view-section" *ngIf="show.seasons.length > 0">
+        <ul class="view-list">
+            <li *ngFor="let season of show.seasons" *ngIf="season.episode_count > 0">
+                <img [src]="'http://image.tmdb.org/t/p/w185/' + season.poster_path" alt="Season Poster" />
+                <div class="item-info">
+                    <div class="col-md-2">#{{ season.season_number }}</div>
+                    <div class="col-md-10">Episode Count: {{ season.episode_count }}</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div *ngIf="show.seasons.length === 0" class="no-data">No season information available</div>
+    <!-- Information available through additional API calls -->
+    <h2>Cast</h2>
+    <div class="view-section cast-container" *ngIf="show.cast.length > 0">
+        <ul class="view-list">
+            <li *ngFor="let actor of show.cast">
+                <img [src]="'http://image.tmdb.org/t/p/w185/' + actor.profile_path" alt="Actor Profile" />
+                <div class="item-info">
+                    {{ actor.name }} as <br />
+                    <strong>{{ actor.character }}</strong>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div *ngIf="show.cast.length === 0" class="no-data">No cast information available</div>
+</div>
