@@ -1,5 +1,3 @@
-// Converted from src/assets/js/angular-truncate.js
-
 const characters = (input: string, chars: number, breakOnWord: boolean): string => {
     if (isNaN(chars)) return input;
     if (chars <= 0) return '';

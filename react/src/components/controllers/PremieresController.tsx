@@ -1,7 +1,7 @@
 // Converted from src/sections/premieres/premieres.ctrl.js
 
 import React, { useEffect, useState } from 'react';
-import PageValues from '../../utils/constants/PageValues';
+import PageValues from '../../../utils/constants/PageValues';
 
 type PremieresControllerProps = {
     shows: Array<any>;
