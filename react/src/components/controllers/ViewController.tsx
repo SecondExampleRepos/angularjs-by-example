@@ -1,8 +1,8 @@
 // Converted from src/sections/view/view.ctrl.js
 
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import PageValues from '../../utils/constants/PageValues';
+import ShowService from '../../services/ShowService';
 
 type Show = {
     id: number;
@@ -25,8 +25,8 @@ const ViewController: React.FC<ViewControllerProps> = ({ show }) => {
         // Fetch cast information
         const fetchCast = async () => {
             try {
-                const response = await axios.get(`http://api.themoviedb.org/3/tv/${show.id}/credits?api_key=87de9079e74c828116acce677f6f255b`);
-                setCast(response.data.cast);
+                const response = await ShowService.getCast(show.id);
+                setCast(response.cast);
             } catch (error) {
                 console.error('Failed to fetch cast information', error);
             }
@@ -44,6 +44,13 @@ const ViewController: React.FC<ViewControllerProps> = ({ show }) => {
     return (
         <div style={setBannerImage()}>
             {/* Render show details and cast here */}
+            {cast.length > 0 && (
+                <ul>
+                    {cast.map((member, index) => (
+                        <li key={index}>{member.name}</li>
+                    ))}
+                </ul>
+            )}
         </div>
     );
 };

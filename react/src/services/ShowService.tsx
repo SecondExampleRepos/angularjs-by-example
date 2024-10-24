@@ -1,10 +1,10 @@
 // Converted from src/services/show.fct.js
 
-import axios from 'axios';
-import moment from 'moment';
-
-const API_KEY = '87de9079e74c828116acce677f6f255b';
-const BASE_URL = 'http://api.themoviedb.org/3';
+import axios, { AxiosRequestConfig } from 'axios';
+// Correcting the import to use the main 'date-fns' package
+import { format } from 'date-fns';
+import API_KEY from '../utils/constants/API_KEY';
+import BASE_URL from '../utils/constants/BASE_URL';
 
 const makeRequest = async (url: string, params: Record<string, any>) => {
     const requestUrl = `${BASE_URL}/${url}?api_key=${API_KEY}`;
@@ -13,13 +13,14 @@ const makeRequest = async (url: string, params: Record<string, any>) => {
         .join('&');
     const fullUrl = `${requestUrl}&${queryString}`;
 
+    const config: AxiosRequestConfig = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
     try {
-        const response = await axios.get(fullUrl, {
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            cache: true
-        });
+        const response = await axios.get(fullUrl, config);
         return response.data;
     } catch (error) {
         console.error('XHR Failed for ShowService', error);
@@ -27,15 +28,19 @@ const makeRequest = async (url: string, params: Record<string, any>) => {
     }
 };
 
+const getResults = async (url: string, params: Record<string, any>) => {
+    const data = await makeRequest(url, params);
+    return data.results;
+};
+
 const getPremieres = async () => {
     const date = new Date();
     date.setDate(1);
-    const formattedDate = moment(date).format('DD-MM-YYYY');
-    const data = await makeRequest('discover/tv', {
+    const formattedDate = format(date, 'dd-MM-yyyy');
+    return getResults('discover/tv', {
         'first_air_date.gte': formattedDate,
         append_to_response: 'genres'
     });
-    return data.results;
 };
 
 const get = async (id: number) => {
@@ -47,13 +52,11 @@ const getCast = async (id: number) => {
 };
 
 const search = async (query: string) => {
-    const data = await makeRequest('search/tv', { query });
-    return data.results;
+    return getResults('search/tv', { query });
 };
 
 const getPopular = async () => {
-    const data = await makeRequest('tv/popular', {});
-    return data.results;
+    return getResults('tv/popular', {});
 };
 
 const ShowService = {

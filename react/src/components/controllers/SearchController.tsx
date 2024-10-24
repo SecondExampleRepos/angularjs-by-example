@@ -1,8 +1,7 @@
 // Converted from src/sections/search/search.ctrl.js
 
 import React, { useState, useEffect } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
-import axios from 'axios';
+import { useNavigate, useParams } from 'react-router-dom';
 import PageValues from '../../utils/constants/PageValues';
 import ShowService from '../../services/ShowService';
 
@@ -14,7 +13,7 @@ const SearchController: React.FC<SearchControllerProps> = ({ query }) => {
     const [searchQuery, setSearchQuery] = useState<string | null>(query || null);
     const [shows, setShows] = useState<Array<any>>([]);
     const [loading, setLoading] = useState<boolean>(false);
-    const history = useHistory();
+    const navigate = useNavigate();
     const { query: routeQuery } = useParams<{ query: string }>();
 
     useEffect(() => {
@@ -31,7 +30,7 @@ const SearchController: React.FC<SearchControllerProps> = ({ query }) => {
     const setSearch = () => {
         if (searchQuery) {
             const encodedQuery = encodeURI(searchQuery);
-            history.push(`/search/${encodedQuery}`);
+            navigate(`/search/${encodedQuery}`);
         }
     };
 

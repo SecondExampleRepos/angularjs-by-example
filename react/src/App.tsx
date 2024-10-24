@@ -1,12 +1,11 @@
 // Converted from src/app.routes.js
 
-import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import Home from '../components/controllers/HomeController';
-import Premieres from '../components/controllers/PremieresController';
-import Search from '../components/controllers/SearchController';
-import Popular from '../components/controllers/PopularController';
-import View from '../components/controllers/ViewController';
+import Home from '../components/HomeController';
+import Premieres from '../components/PremieresController';
+import Search from '../components/SearchController';
+import Popular from '../components/PopularController';
+import View from '../components/ViewController';
 import ShowService from '../services/ShowService';
 
 // CSS Imports
@@ -20,6 +19,8 @@ import '../assets/src/sections/search/search.css';
 import '../assets/src/sections/view/view.css';
 
 function App() {
+  const renderController = (Controller: React.ComponentType<any>, props?: any) => <Controller {...props} />;
+
   return (
     <Router>
       <Routes>
@@ -28,19 +29,13 @@ function App() {
           path="/premieres"
           element={<Premieres shows={ShowService.getPremieres()} />}
         />
-        <Route path="/search" element={<Search />} />
-        <Route
-          path="/search/:query"
-          element={<Search />}
-        />
+        <Route path="/search" element={renderController(Search)} />
+        <Route path="/search/:query" element={renderController(Search)} />
         <Route
           path="/popular"
           element={<Popular shows={ShowService.getPopular()} />}
         />
-        <Route
-          path="/view/:id"
-          element={<View />}
-        />
+        <Route path="/view/:id" element={<View show={ShowService.get(id)} />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>

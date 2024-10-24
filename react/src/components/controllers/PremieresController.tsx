@@ -1,15 +1,13 @@
 // Converted from src/sections/premieres/premieres.ctrl.js
 
-import React, { useEffect, useState } from 'react';
-import PageValues from '../../../utils/constants/PageValues';
+import React, { useEffect } from 'react';
+import PageValues from '../../utils/constants/PageValues'; // Adjusted the import path
 
 type PremieresControllerProps = {
-    shows: Array<any>;
+    shows: Array<{ name: string }>;
 };
 
 const PremieresController: React.FC<PremieresControllerProps> = ({ shows }) => {
-    const [premiereShows, setPremiereShows] = useState<Array<any>>(shows);
-
     useEffect(() => {
         // Set page title and description
         PageValues.title = "PREMIERES";
@@ -21,7 +19,7 @@ const PremieresController: React.FC<PremieresControllerProps> = ({ shows }) => {
             <h1>{PageValues.title}</h1>
             <p>{PageValues.description}</p>
             <ul>
-                {premiereShows.map((show, index) => (
+                {shows.map((show, index) => (
                     <li key={index}>{show.name}</li>
                 ))}
             </ul>
